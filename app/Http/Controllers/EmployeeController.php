@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Employee;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EmployeeController extends Controller
 {
@@ -14,7 +15,8 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        //
+        $employees = Employee::all();
+        return view('Employee.index' , compact('employees'));
     }
 
     /**
@@ -35,7 +37,24 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if($request -> id == 0){
+            Employee::create([
+                'name' => $request -> name,
+                'phone' =>  $request -> phone ?? "",
+                'address' => $request ->address ?? "" ,
+                'salary' => $request -> salary,
+                'workHoursCount' => $request -> workHoursCount,
+                'workDaysCount' => $request -> workDaysCount,
+                'offWeaklyDaysCount' => $request -> offWeaklyDaysCount,
+                'tag' => $request -> tag ,
+                'user_ins'=> Auth::user()-> id ,
+                'user_upd' => 0
+            ]);
+            return redirect()->route('employee')->with('success' ,  __('main.saved'));
+
+        } else {
+            return $this -> update($request);
+        }
     }
 
     /**
@@ -44,9 +63,13 @@ class EmployeeController extends Controller
      * @param  \App\Models\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function show(Employee $employee)
+    public function show($id)
     {
-        //
+        $employee = Employee::find($id);
+        if($employee){
+            echo json_encode($employee);
+            exit();
+        }
     }
 
     /**
@@ -67,9 +90,23 @@ class EmployeeController extends Controller
      * @param  \App\Models\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Employee $employee)
+    public function update(Request $request)
     {
-        //
+        $employee = Employee::find($request -> id);
+        if($employee){
+            $employee -> update([
+                'name' => $request -> name,
+                'phone' =>  $request -> phone ?? "",
+                'address' => $request ->address ,
+                'salary' => $request -> salary,
+                'workHoursCount' => $request -> workHoursCount,
+                'workDaysCount' => $request -> workDaysCount,
+                'offWeaklyDaysCount' => $request -> offWeaklyDaysCount,
+                'tag' => $request -> tag ,
+                'user_upd' => Auth::user()-> id
+            ]);
+        }
+        return redirect()->route('employee')->with('success' ,  __('main.updated'));
     }
 
     /**
@@ -78,8 +115,12 @@ class EmployeeController extends Controller
      * @param  \App\Models\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Employee $employee)
+    public function destroy($id)
     {
-        //
+        $employee = Employee::find($id);
+        if($employee){
+            $employee -> delete();
+            return redirect()->route('employee')->with('success' ,  __('main.deleted'));
+        }
     }
 }

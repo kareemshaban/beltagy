@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEmployeesTable extends Migration
+class CreateDeductionAndBonsesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,13 @@ class CreateEmployeesTable extends Migration
      */
     public function up()
     {
-        Schema::create('employees', function (Blueprint $table) {
+        Schema::create('deduction_and_bonses', function (Blueprint $table) {
             $table->id();
-            $table -> integer('tag') ;
-            $table -> string('name') ;
-            $table -> string('phone') ;
-            $table -> text('address') ;
-            $table -> decimal('salary') ;
-            $table -> integer('workHoursCount') ;
-            $table -> integer('workDaysCount') ;
-            $table -> integer('offWeaklyDaysCount') ;
+            $table -> integer('user_id');
+            $table -> timestamp('date')  -> useCurrent();
+            $table -> integer('type');
+            $table -> decimal('hours');
+            $table -> text('notes');
             $table -> integer('user_ins');
             $table -> integer('user_upd') -> default(0);
             $table->timestamps();
@@ -36,6 +33,6 @@ class CreateEmployeesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('employees');
+        Schema::dropIfExists('deduction_and_bonses');
     }
 }

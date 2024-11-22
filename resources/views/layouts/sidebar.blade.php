@@ -7,7 +7,7 @@
             <img src="{{asset('assets/images/hr.png')}}" alt=""  width="50"/>
             <h3 style="color: #00A1FF;">DEV-HR </h3>
             </div>
-         
+
           </a>
           <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
             <i class="ti ti-x fs-8"></i>
@@ -30,9 +30,9 @@
             </li>
             <li class="nav-small-cap">
               <iconify-icon icon="solar:menu-dots-linear" class="nav-small-cap-icon fs-4"></iconify-icon>
-              
+
             </li>
-            
+
             <li class="sidebar-item">
               <a class="sidebar-link" href="{{route('employee')}}" aria-expanded="false">
 
@@ -44,7 +44,7 @@
               <span class="sidebar-divider lg"></span>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="./ui-alerts.html" aria-expanded="false">
+              <a class="sidebar-link" href="{{ route('deductionAndBonse') }}" aria-expanded="false">
               <iconify-icon icon="material-symbols:more-time-rounded"></iconify-icon>
                 <span class="hide-menu">{{__('main.deduction_boins')}}</span>
               </a>
@@ -53,25 +53,17 @@
               <span class="sidebar-divider lg"></span>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="./ui-card.html" aria-expanded="false">
+              <a class="sidebar-link" href="{{ route('financialDeductionAndBonse') }}" aria-expanded="false">
               <iconify-icon icon="hugeicons:money-add-01"></iconify-icon>
-                <span class="hide-menu">{{__('main.reward')}}</span>
+                <span class="hide-menu">{{__('main.financial_deduction_boins')}}</span>
               </a>
             </li>
+
             <li>
               <span class="sidebar-divider lg"></span>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="./ui-forms.html" aria-expanded="false">
-              <iconify-icon icon="hugeicons:money-remove-01"></iconify-icon>
-                <span class="hide-menu">{{__('main.deductions')}}</span>
-              </a>
-            </li>
-            <li>
-              <span class="sidebar-divider lg"></span>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="./ui-typography.html" aria-expanded="false">
+              <a class="sidebar-link" href="{{ route('advances') }}" aria-expanded="false">
               <iconify-icon icon="game-icons:take-my-money"></iconify-icon>
                 <span class="hide-menu">{{__('main.advances')}}</span>
               </a>
@@ -95,7 +87,7 @@
               </a>
             </li>
             <li>
-            
+
         </nav>
         <!-- End Sidebar navigation -->
       </div>
