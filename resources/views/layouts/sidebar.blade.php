@@ -71,8 +71,8 @@
             <li>
               <span class="sidebar-divider lg"></span>
             </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="./ui-typography.html" aria-expanded="false">
+            <li class="sidebar-item" hidden>
+              <a class="sidebar-link" href="{{route('settings')}}" aria-expanded="false">
               <iconify-icon icon="ooui:settings"></iconify-icon>
                 <span class="hide-menu">{{__('main.settings')}}</span>
               </a>
@@ -81,7 +81,7 @@
               <span class="sidebar-divider lg"></span>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="./ui-typography.html" aria-expanded="false">
+              <a class="sidebar-link" href="{{route('monthClose')}}" aria-expanded="false">
               <iconify-icon icon="ic:twotone-calendar-month"></iconify-icon>
                 <span class="hide-menu">{{__('main.monthly_close')}}</span>
               </a>

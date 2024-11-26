@@ -43,6 +43,15 @@ Route::group(
         Route::get('/advances-get/{id}', [App\Http\Controllers\AdvanceController::class, 'show'])->name('advances-get');
         Route::get('/advances-destroy/{id}', [App\Http\Controllers\AdvanceController::class, 'destroy'])->name('advances-destroy');
 
+        Route::get('/settings', [App\Http\Controllers\SettingsController::class, 'index'])->name('settings');
+        Route::post('/settings-store', [App\Http\Controllers\SettingsController::class, 'store'])->name('settings-store');
+
+        Route::get('/monthClose', [App\Http\Controllers\MonthClosingController::class, 'index'])->name('monthClose');
+        Route::post('/monthClose-store', [App\Http\Controllers\MonthClosingController::class, 'store'])->name('monthClose-store');
+        Route::get('/monthClose-get/{id}', [App\Http\Controllers\MonthClosingController::class, 'show'])->name('monthClose-get');
+        Route::get('/monthClose-destroy/{id}', [App\Http\Controllers\MonthClosingController::class, 'destroy'])->name('monthClose-destroy');
+
+
         Auth::routes();
     }
 );

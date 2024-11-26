@@ -55,6 +55,17 @@ return [
     'payments_advance' => 'Payments Advance',
     'monthlyPayment' => 'Monthly payment',
     'paymentsCount' => 'Payments Count',
-    'remainPaymentsCount' => 'Remain payments count'
+    'remainPaymentsCount' => 'Remain payments count',
+    'apsents_hours_to_deduct_one_day' => 'Number of hours of absence to deduct one day',
+    'attach_file' => 'Attach the attendance file',
+    'attend_days_count' => 'Attendance',
+    'absence_days_count' => 'Absence',
+    'deductions_days_count' => 'Deduction',
+    'bonse_days_count' => 'Bonse',
+    'deductions_amount' => 'Money Deduction',
+    'bonse_amount' => 'Money Bonse',
+    'advance_amount' => 'Advance Payment',
+    'net_salary' => 'Net Salary',
+
 
     ];

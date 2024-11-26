@@ -56,7 +56,18 @@ return [
     'monthlyPayment' => 'قيمة الدفعة',
     'startDate' => 'بداية التسديد',
     'paymentsCount' => 'عدد الدفعات',
-    'remainPaymentsCount' => 'عدد الدفعات المتبقية'
+    'remainPaymentsCount' => 'عدد الدفعات المتبقية',
+    'apsents_hours_to_deduct_one_day' => 'عدد ساعات الغياب لخصم يوم واحد',
+    'attach_file' => 'إرفاق ملف البصمة',
+    'attend_days_count' => 'أيام الحضور',
+    'absence_days_count' => 'أيام الغياب',
+    'deductions_days_count' => 'أيام الخصم',
+    'bonse_days_count' => 'أيام الإضافي',
+    'deductions_amount' => 'خصم مالي',
+    'bonse_amount' => 'مكافئة مالية',
+    'advance_amount' => 'تسديد سلفة',
+    'net_salary' => 'صافي الراتب',
+
 
 
 
