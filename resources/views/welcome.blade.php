@@ -9,8 +9,8 @@
 	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	
-	<link rel="stylesheet" href="../../assets/css/login.css">
+
+	<link rel="stylesheet" href="../../public/assets/css/login.css">
 
 	</head>
 	<body class="img js-fullheight" style="background-image: url(../assets/img/login.jpg);">
@@ -28,20 +28,20 @@
 		      	<form class="login100-form validate-form" method="POST" action="{{ route('login') }}">
 
                         @csrf
-		
-					
+
+
 					<div class="form-group" data-validate = "Username is required">
 						<input type="email"   id="email" placeholder="user name"
                         class="input100 form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-					
+
                         @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
 					</div>
-					
-					
+
+
 					<div class="form-group" data-validate="Password is required">
 						<input  placeholder="Password" type="password"  id="password" type="password" class="input100 form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
 
@@ -58,7 +58,7 @@
 							Sign in
 						</button>
 					</div>
-			
+
 				</form>
 
 
@@ -73,10 +73,10 @@
 		</div>
 	</section>
 
-	<script src="../../assets/js/jquery.min.js"></script>
-  <script src="../../assets/js/popper.js"></script>
-  <script src="../../assets/js/bootstrap.min.js"></script>
-  <script src="../../assets/js/login.js"></script>
+	<script src="../../public/assets/js/jquery.min.js"></script>
+  <script src="../../public/assets/js/popper.js"></script>
+  <script src="../../public/assets/js/bootstrap.min.js"></script>
+  <script src="../../public/assets/js/login.js"></script>
 
 	</body>
 </html>

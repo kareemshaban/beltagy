@@ -1,5 +1,5 @@
 import CoreUtils from './CoreUtils'
-import DateTime from './../utils/DateTime'
+import DateTime from '../utils/DateTime'
 import Series from './Series'
 import Utils from '../utils/Utils'
 import Defaults from './settings/Defaults'

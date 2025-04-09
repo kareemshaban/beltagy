@@ -11,9 +11,7 @@
         @include('layouts.sidebar')
         <!--  Sidebar End -->
         <!--  Main wrapper -->
-        <div class="body-wrapper" @if(Config::get('app.locale')=='ar' )
-            style="margin-left: 0 ; margin-right: 260px ; direction: rtl;" @else
-            style="margin-right: 0 ; margin-left: 260px ; direction: ltr;" @endif>
+        <div class="body-wrapper edit_layout"  >
             <!--  Header Start -->
             @include('layouts.header')
             <!--  Header End -->
@@ -32,7 +30,7 @@
                         </div>
                         <div class="card-body">
                             <div class="table-wrapper">
-
+                                <div class="table-responsive">
                                 <table class="table table-striped  table-bordered table-hover" id="table">
                                     <thead>
                                         <th class="text-center"> {{ __('main.id') }} </th>
@@ -46,7 +44,7 @@
                                         @foreach ( $operations as $operation )
                                         <tr>
                                             <td class="text-center"> {{ $operation -> id }} </td>
-                                            <td class="text-center"> {{ $operation -> date }} </td>
+                                            <td class="text-center">{{ \Carbon\Carbon::parse($operation -> date) -> format("d-m-Y")  }} </td>
                                             <td class="text-center"> {{ $operation -> employe }} </td>
                                             <td class="text-center"> <span @if ($operation -> type == 0 ) class="badge
                                                     text-bg-warning" @else class="badge text-bg-info" @endif> {{
@@ -70,6 +68,7 @@
                                         @endforeach
                                     </tbody>
                                 </table>
+                                </div>
                             </div>
 
 
@@ -118,6 +117,8 @@
                 $(".modal-body #startDate").val(startTade);
                 $(".modal-body #paymentsCount").val(0);
                 $(".modal-body #remainPaymentsCount").val(0);
+
+                $(".modal-body #type").attr('readonly' , false);
 
                 $(".modal-body #type").change(function(val){
                     console.log(val.target.value);
@@ -207,6 +208,7 @@
                             $(".modal-body #startDate").val(date_val2);
                             $(".modal-body #paymentsCount").val(response.paymentsCount);
                             $(".modal-body #remainPaymentsCount").val(response.remainPaymentsCount);
+                            $(".modal-body #type").attr('disabled' , true);
                             $(".modal-body #type").change(function(val){
                                  if(val.target.value == 0){
                                     $(".modal-body #payments").slideUp();

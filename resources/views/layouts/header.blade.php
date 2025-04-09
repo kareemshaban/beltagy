@@ -6,11 +6,11 @@
                 <i class="ti ti-menu-2"></i>
               </a>
             </li>
-      
+
           </ul>
           <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
             <ul class="navbar-nav flex-row @if (Config::get('app.locale')=='en' ) ms-auto @else me-auto  @endif align-items-center justify-content-end">
-            
+
               <li class="nav-item dropdown">
                 <a class="nav-link " href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
                   aria-expanded="false">
@@ -22,7 +22,7 @@
                       <i class="ti ti-user fs-6"></i>
                       <p class="mb-0 fs-3">{{__('main.profile')}}</p>
                     </a>
-              
+
                     @if(Config::get('app.locale')=='en' )
                     <a el="alternate" hreflang="ar"
                     href="{{ LaravelLocalization::getLocalizedURL('ar', null, [], true) }}" class="d-flex align-items-center gap-2 dropdown-item">
@@ -39,7 +39,7 @@
 
 
 
-                    <a href="{{route('logout')}}"  class="btn btn-outline-primary mx-3 mt-2 d-block" 
+                    <a href="{{route('logout')}}"  class="btn btn-outline-primary mx-3 mt-2 d-block"
                          onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                          {{__('main.logout')}}</a>
                   </div>
@@ -53,3 +53,35 @@
       <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
     @csrf
 </form>
+<style>
+    .btn-group {
+        direction: ltr;
+        float: left;
+    }
+    .dataTables_length {
+        width: 200px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        float: right;
+    }
+    .dataTables_length label {
+        width: 90%;
+    }
+    .dataTables_filter {
+        width: 200px;
+        display: flex;
+        float: right;
+    }
+    .pagination {
+        direction: ltr;
+    }
+    @page { size: auto;  margin: 0mm; }
+
+     .required:after {
+         content:" *";
+         color: red;
+     }
+
+
+</style>

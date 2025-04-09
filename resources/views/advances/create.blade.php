@@ -125,7 +125,7 @@
                                         <label>{{ __('main.paymentsCount') }}</label>
                                         <input type="number" name="paymentsCount" id="paymentsCount"
                                             class="form-control @error('paymentsCount') is-invalid @enderror"
-                                            placeholder="0" autofocus required disabled/>
+                                            placeholder="0" autofocus required readonly/>
                                         @error('paymentsCount')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -139,7 +139,7 @@
                                         <label>{{ __('main.remainPaymentsCount') }}</label>
                                         <input type="number" name="remainPaymentsCount" id="remainPaymentsCount"
                                             class="form-control @error('remainPaymentsCount') is-invalid @enderror"
-                                            placeholder="0" autofocus required disabled/>
+                                            placeholder="0" autofocus required readonly/>
                                         @error('remainPaymentsCount')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>

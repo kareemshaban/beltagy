@@ -1,12 +1,19 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title> DEV-HR ADMIN </title>
+    <title>  </title>
     <link rel="shortcut icon" type="image/png" href="{{asset('assets/images/hr.png')}}" />
     <link rel="stylesheet" href="{{asset('assets/css/styles.min.css')}}" />
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
     <link href="https://cdn.datatables.net/2.1.8/css/dataTables.bootstrap.css" />
     <link href="https://cdn.datatables.net/rowreorder/1.5.0/css/rowReorder.bootstrap.css" />
+
+
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/jquery-easyui/themes/default/easyui.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/jquery-easyui/themes/icon.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/jquery-easyui/demo/demo.css')}}">
+
+
 </head>
 
 <style>
@@ -21,6 +28,13 @@
     * {
         font-family: 'icomoon' !important;
     }
+    .textbox-invalid {
+        width:  100% !important;
+    }
+    .textbox{
+        width:  100% !important;
+    }
+
 
     .container-fluid {
         width: 100% !important;
@@ -90,6 +104,20 @@
     .dt-empty {
         text-align: center !important;
     }
+    .dataTables_wrapper {
+        direction: rtl !important;
+    }
+    .container-fluid {
+        padding: 0 !important;
+    }
+    .body-wrapper-inner {
+        margin-top: 40px;
+        border-radius: 20px !important;
+        margin-bottom: 30px;
+        min-height: calc(100vh - 70px);
+        margin-left: calc(15px);
+        margin-right: calc(15px);
+    }
 </style>
 
 
@@ -128,7 +156,44 @@
         align-items: center;
         float: left;
     }
+
+
+        @if(Config::get('app.locale')=='ar' )
+        .edit_layout {
+            margin-left: 0 !important;
+            margin-right: 260px !important;
+            direction: rtl !important;
+        }
+    @endif
+
+      @if(Config::get('app.locale')=='en' )
+        .edit_layout {
+        margin-right: 0 !important;
+        margin-left: 260px  !important;
+        direction: ltr !important;
+    }
+    @endif
+    @media  (max-width: 1200px) {
+        @if(Config::get('app.locale')=='ar' )
+        .edit_layout {
+            margin-left: 0 !important;
+            margin-right: 0px !important;
+            direction: rtl !important;
+        }
+        @endif
+
+      @if(Config::get('app.locale')=='en' )
+        .edit_layout {
+            margin-right: 0 !important;
+            margin-left: 0px  !important;
+            direction: ltr !important;
+        }
+    @endif
+}
+
 </style>
 
 
 @endif
+
+

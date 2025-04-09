@@ -15,7 +15,8 @@ class CreateSettingsTable extends Migration
     {
         Schema::create('settings', function (Blueprint $table) {
             $table->id();
-            $table -> decimal('apsents_hours_to_deduct_one_day') ;
+            $table -> decimal('enteringTax') ;
+            $table -> decimal('monthly_cooling_tax_per_box') ;
             $table -> integer('user_ins');
             $table -> integer('user_upd') -> default(0);
             $table->timestamps();

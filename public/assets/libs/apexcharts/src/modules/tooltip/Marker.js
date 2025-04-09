@@ -1,6 +1,6 @@
 import Graphics from '../Graphics'
 import Position from './Position'
-import Markers from '../../modules/Markers'
+import Markers from '../Markers'
 import Utils from '../../utils/Utils'
 
 /**

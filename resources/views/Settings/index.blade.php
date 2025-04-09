@@ -24,21 +24,25 @@
                             style="display: flex ; justify-content: space-between ; align-items: center">
                             <h5 class="card-title fw-semibold " style="margin-bottom: 0 !important; color: #3cacc8 ">{{
                                 __('main.settings') }}</h5>
-                          
+
                         </div>
                         <div class="card-body">
 
                         <form class="center" method="POST" action="{{ route('settings-store') }}"
                         enctype="multipart/form-data">
                         @csrf
-                        <div class="row"> 
+                        <div class="row">
+                            <div class="col-12">
+                                @include('flash-message')
+
+                            </div>
                              <div class="col-12">
                              <div class="form-group">
-                                    <label>{{ __('main.apsents_hours_to_deduct_one_day') }}  </label>
-                                    <input type="number"  name="apsents_hours_to_deduct_one_day" id="apsents_hours_to_deduct_one_day"
-                                        class="form-control @error('apsents_hours_to_deduct_one_day') is-invalid @enderror"
-                                         autofocus  required @if ($setting)  value="{{$setting -> apsents_hours_to_deduct_one_day}}"  @endif/>
-                                    @error('apsents_hours_to_deduct_one_day')
+                                    <label>{{ __('main.enteringTax') }}  </label>
+                                    <input type="number" step="any" name="enteringTax" id="enteringTax"
+                                        class="form-control @error('enteringTax') is-invalid @enderror"
+                                         autofocus  required @if ($setting)  value="{{$setting -> enteringTax}}"  @endif/>
+                                    @error('enteringTax')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -50,6 +54,24 @@
 
 
                         </div>
+                        <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label>{{ __('main.monthly_cooling_tax_per_box') }}  </label>
+                                        <input type="number"  step="any" name="monthly_cooling_tax_per_box" id="monthly_cooling_tax_per_box"
+                                               class="form-control @error('monthly_cooling_tax_per_box') is-invalid @enderror"
+                                               autofocus  required @if ($setting)  value="{{$setting -> monthly_cooling_tax_per_box}}"  @endif/>
+                                        @error('monthly_cooling_tax_per_box')
+                                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                        @enderror
+
+                                    </div>
+                                </div>
+
+
+                            </div>
                         <div class="row" style="margin-top: 40px">
                             <div class="col-12 text-center">
                                 <button type="submit" class="btn btn-warning">{{ __('main.save_btn') }}</button>
@@ -61,7 +83,7 @@
 
 
                         </form>
-                            
+
 
 
                         </div>
@@ -74,7 +96,7 @@
         </div>
     </div>
 
- 
+
 </body>
 
 </html>

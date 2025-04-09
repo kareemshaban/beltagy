@@ -1,6 +1,6 @@
-import Data from '../modules/Data'
-import AxesUtils from '../modules/axes/AxesUtils'
-import Series from '../modules/Series'
+import Data from './Data'
+import AxesUtils from './axes/AxesUtils'
+import Series from './Series'
 import Utils from '../utils/Utils'
 
 class Exports {

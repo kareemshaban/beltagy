@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\MonthClosing;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 
 class MonthClosingController extends Controller
 {
@@ -12,6 +13,11 @@ class MonthClosingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
        return view('month-close.index');

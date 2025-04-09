@@ -33,11 +33,11 @@
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
-                                    <label>{{ __('main.phone') }}</label>
-                                    <input type="text" name="phone" id="phone"
-                                        class="form-control @error('phone') is-invalid @enderror"
-                                        placeholder="{{ __('main.phone_place') }}" autofocus />
-                                    @error('phone')
+                                    <label>{{ __('main.tag') }}</label>
+                                    <input type="number" name="tag" id="tag"
+                                           class="form-control @error('tag') is-invalid @enderror"
+                                           placeholder="0" autofocus required/>
+                                    @error('tag')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -45,6 +45,47 @@
 
                                 </div>
                             </div>
+
+                        </div>
+                        <div class="row" style="margin-top: 10px">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label>{{ __('main.department') }}</label>
+                                    <select class="form-select  @error('department_id') is-invalid @enderror" id="department_id" name="department_id" required>
+                                        <option value=""> اختر القسم</option>
+                                        @foreach($departments as $department)
+                                            <option value="{{$department -> id}}">  {{$department -> name}}</option>
+                                        @endforeach
+
+                                    </select>
+                                    @error('department_id')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label>{{ __('main.job') }}</label>
+                                    <select class="form-select  @error('job_id') is-invalid @enderror" id="job_id" name="job_id" required>
+                                        <option value=""> اختر الوظيفة</option>
+                                        @foreach($jobs as $job)
+                                            <option value="{{$job -> id}}">  {{$job -> name}}</option>
+                                        @endforeach
+
+                                    </select>
+                                    @error('job_id')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+
+                                </div>
+                            </div>
+
+
                         </div>
                         <div class="row" style="margin-top: 10px">
                             <div class="col-6">
@@ -95,10 +136,16 @@
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
-                                    <label>{{ __('main.offWeaklyDaysCount') }}</label>
-                                    <input type="number" name="offWeaklyDaysCount" id="offWeaklyDaysCount"
-                                        class="form-control @error('offWeaklyDaysCount') is-invalid @enderror"
-                                        placeholder="0" autofocus required/>
+                                    <label>{{ __('main.offWeaklyDay') }}</label>
+                                    <select class="form-select @error('offWeaklyDaysCount') is-invalid @enderror" id="offWeaklyDay" name="offWeaklyDay">
+                                        <option value="1"> {{__('main.day1')}} </option>
+                                        <option value="2"> {{__('main.day2')}} </option>
+                                        <option value="3"> {{__('main.day3')}} </option>
+                                        <option value="4"> {{__('main.day4')}} </option>
+                                        <option value="5"> {{__('main.day5')}} </option>
+                                        <option value="6"> {{__('main.day6')}} </option>
+                                        <option value="7"> {{__('main.day7')}} </option>
+                                    </select>
                                     @error('offWeaklyDaysCount')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -114,11 +161,11 @@
                         <div class="row" style="margin-top: 10px">
                             <div class="col-6">
                                 <div class="form-group">
-                                    <label>{{ __('main.tag') }}</label>
-                                    <input type="number" name="tag" id="tag"
-                                        class="form-control @error('tag') is-invalid @enderror"
-                                        placeholder="0" autofocus required/>
-                                    @error('tag')
+                                    <label>{{ __('main.phone') }}</label>
+                                    <input type="text" name="phone" id="phone"
+                                           class="form-control @error('phone') is-invalid @enderror"
+                                           placeholder="{{ __('main.phone_place') }}" autofocus />
+                                    @error('phone')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

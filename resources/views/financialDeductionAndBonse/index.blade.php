@@ -11,9 +11,7 @@
         @include('layouts.sidebar')
         <!--  Sidebar End -->
         <!--  Main wrapper -->
-        <div class="body-wrapper" @if(Config::get('app.locale')=='ar' )
-            style="margin-left: 0 ; margin-right: 260px ; direction: rtl;" @else
-            style="margin-right: 0 ; margin-left: 260px ; direction: ltr;" @endif>
+        <div class="body-wrapper edit_layout">
             <!--  Header Start -->
             @include('layouts.header')
             <!--  Header End -->
@@ -31,7 +29,7 @@
                         </div>
                         <div class="card-body">
                             <div class="table-wrapper">
-
+                                <div class="table-responsive">
                                 <table class="table table-striped  table-bordered table-hover" id="table">
                                     <thead>
                                         <th class="text-center"> {{ __('main.id') }} </th>
@@ -45,7 +43,7 @@
                                         @foreach ( $operations as $operation )
                                         <tr>
                                             <td class="text-center"> {{ $operation -> id }} </td>
-                                            <td class="text-center"> {{ $operation -> date }} </td>
+                                            <td class="text-center"> {{ \Carbon\Carbon::parse($operation -> date) -> format("d-m-Y")  }}</td>
                                             <td class="text-center"> {{ $operation -> employe }} </td>
                                             <td class="text-center"  >  <span @if ($operation -> type == 0 )  class="badge text-bg-danger" @else class="badge text-bg-success" @endif> {{ $operation -> type == 0  ?  __('main.deduction')  : __('main.bonse') }} </span></td>
                                             <td class="text-center"> {{ $operation -> reward }} </td>
@@ -58,6 +56,7 @@
                                         @endforeach
                                     </tbody>
                                 </table>
+                                </div>
                             </div>
 
 

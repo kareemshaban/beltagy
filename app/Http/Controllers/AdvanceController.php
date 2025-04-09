@@ -6,6 +6,7 @@ use App\Models\Advance;
 use App\Models\Employee;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -16,6 +17,10 @@ class AdvanceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         $operations = DB::table('advances')
@@ -51,10 +56,10 @@ class AdvanceController extends Controller
                 'date' => Carbon::parse($request->date),
                 'type' => $request->type,
                 'amount' => $request->amount,
-                'monthlyPayment' => $request->type == 0 ? $request->monthlyPayment : 0,
+                'monthlyPayment' => $request->type == 1 ? $request->monthlyPayment : 0,
                 'startDate' => Carbon::parse($request->startDate),
-                'paymentsCount' => $request->type == 0 ? $request->paymentsCount : 0,
-                'remainPaymentsCount' => $request->type == 0 ? $request->remainPaymentsCount : 0,
+                'paymentsCount' => $request->type == 1 ? $request->paymentsCount : 0,
+                'remainPaymentsCount' => $request->type == 1 ? $request->remainPaymentsCount : 0,
                 'user_ins' => Auth::user()->id,
                 'user_upd' => 0
             ]);
@@ -104,7 +109,7 @@ class AdvanceController extends Controller
             $operation->update([
                 'user_id' => $request->user_id,
                 'date' => Carbon::parse($request->date),
-                'type' => $request->type,
+                //'type' => $request->type,
                 'amount' => $request->amount,
                 'monthlyPayment' => $request->type == 0 ? $request->monthlyPayment : 0,
                 'startDate' => Carbon::parse($request->startDate),

@@ -1193,6 +1193,6 @@ type ApexTheme = {
   }
 }
 
-declare module 'apexcharts' {
+declare module 'public/assets/libs/apexcharts/types/apexcharts' {
   export = ApexCharts
 }

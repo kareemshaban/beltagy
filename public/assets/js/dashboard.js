@@ -255,11 +255,11 @@ $(function () {
     },
   };
 
-  var chart_column_stacked = new ApexCharts(
-    document.querySelector("#total-followers"),
-    totalfollowers
-  );
-  chart_column_stacked.render();
+  // var chart_column_stacked = new ApexCharts(
+  //   document.querySelector("#total-followers"),
+  //   totalfollowers
+  // );
+  // chart_column_stacked.render();
 
   // =====================================
   // total-income
@@ -312,7 +312,7 @@ $(function () {
       },
     },
   };
-  new ApexCharts(document.querySelector("#total-income"), options).render();
+ // new ApexCharts(document.querySelector("#total-income"), options).render();
 
 
 })

@@ -10,14 +10,16 @@ class Employee extends Model
     use HasFactory;
     protected $fillable = [
       'id',
-      'tag',
       'name',
+      'tag',
       'phone',
-      'address',
       'salary',
       'workHoursCount',
       'workDaysCount',
-      'offWeaklyDaysCount',
+      'offWeaklyDay',
+      'address',
+      'department_id',
+      'job_id',
       'user_ins',
        'user_upd'
     ];

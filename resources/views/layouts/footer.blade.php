@@ -7,8 +7,6 @@
   <script src="{{asset('assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
   <script src="{{asset('assets/js/sidebarmenu.js')}}"></script>
   <script src="{{asset('assets/js/app.min.js')}}"></script>
-  <script src="{{asset('assets/libs/apexcharts/dist/apexcharts.min.js')}}"></script>
-  <script src="{{asset('assets/libs/simplebar/dist/simplebar.js')}}"></script>
   <script src="{{asset('assets/js/dashboard.js')}}"></script>
   <!-- solar icons -->
   <script src="{{asset('assets/js/iconify-icon.min.js')}}"></script>
@@ -19,11 +17,57 @@
   <script src="https://cdn.datatables.net/rowreorder/1.5.0/js/dataTables.rowReorder.js"></script>
   <script src="https://cdn.datatables.net/rowreorder/1.5.0/js/rowReorder.bootstrap.js"></script>
 
+<script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="//cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+<script src="//cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>
+<script src="//cdn.datatables.net/buttons/1.5.6/js/buttons.bootstrap4.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="//cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>
+<script src="//cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script>
+<script src="//cdn.datatables.net/buttons/1.5.6/js/buttons.colVis.min.js"></script>
+
   <script>
+
     $( document ).ready(function() {
-        new DataTable('#table', {
-                rowReorder: true
-            });
+        // new DataTable('#table', {
+        //         rowReorder: true
+        //     });
+
+        var table = $('#table').DataTable({
+            "dom": 'Blfrtip',
+            "lengthMenu": [
+                [5 , 10 , 50, 100, 1000, -1],
+                [5 , 10 , 50, 100, 1000, "All"]
+            ],
+            "initComplete": function() {
+                $("#table").show();
+            },
+            "buttons": [
+                {
+                    extend: 'print',
+                    exportOptions: {
+                        columns: [ ':visible:not(:last-child)' ] ,
+                    }
+                },
+                {
+                    extend: 'excelHtml5',
+                    exportOptions: {
+                        columns: ':visible',
+
+                    }
+                },
+                // {
+                //     extend: 'pdfHtml5',
+                //     exportOptions: {
+                //         columns: [ 0, 1, 2, 5 ]
+                //     }
+                // },
+                'colvis'
+            ]
+        });
+        table.buttons().container().appendTo('#table_wrapper .col-md-6:eq(0)');
     });
 
   </script>

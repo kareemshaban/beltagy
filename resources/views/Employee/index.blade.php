@@ -11,9 +11,7 @@
         @include('layouts.sidebar')
         <!--  Sidebar End -->
         <!--  Main wrapper -->
-        <div class="body-wrapper" @if(Config::get('app.locale')=='ar' )
-            style="margin-left: 0 ; margin-right: 260px ; direction: rtl;" @else
-            style="margin-right: 0 ; margin-left: 260px ; direction: ltr;" @endif>
+        <div class="body-wrapper edit_layout">
             <!--  Header Start -->
             @include('layouts.header')
             <!--  Header End -->
@@ -31,12 +29,14 @@
                         </div>
                         <div class="card-body">
                             <div class="table-wrapper">
-
+                                <div class="table-responsive">
                                 <table class="table table-striped  table-bordered table-hover" id="table">
                                     <thead>
                                         <th class="text-center"> {{ __('main.id') }} </th>
                                         <th class="text-center"> {{ __('main.name') }} </th>
                                         <th class="text-center"> {{ __('main.phone') }} </th>
+                                        <th class="text-center"> {{ __('main.department') }} </th>
+                                        <th class="text-center"> {{ __('main.job') }} </th>
                                         <th class="text-center"> {{ __('main.salary') }} </th>
                                         <th class="text-center"> {{ __('main.actions') }} </th>
                                     </thead>
@@ -46,6 +46,8 @@
                                             <td class="text-center"> {{ $employee -> tag }} </td>
                                             <td class="text-center"> {{ $employee -> name }} </td>
                                             <td class="text-center"> {{ $employee -> phone }} </td>
+                                            <td class="text-center"> {{ $employee -> department }} </td>
+                                            <td class="text-center"> {{ $employee -> job }} </td>
                                             <td class="text-center"> {{ $employee -> salary }} </td>
                                             <td class="text-center">
 
@@ -56,6 +58,7 @@
                                         @endforeach
                                     </tbody>
                                 </table>
+                                </div>
                             </div>
 
 
@@ -87,11 +90,15 @@
                 $('#createModal').modal("show");
                 $(".modal-body #id").val(0);
                 $(".modal-body #name").val("");
+                $(".modal-body #tag").val("");
+                $(".modal-body #department_id").val("");
+                $(".modal-body #job_id").val("");
+
                 $(".modal-body #phone").val("");
                 $(".modal-body #salary").val(0);
                 $(".modal-body #workHoursCount").val(0);
                 $(".modal-body #workDaysCount").val(0);
-                $(".modal-body #offWeaklyDaysCount").val(0);
+                $(".modal-body #offWeaklyDay").val("1");
                 $(".modal-body #address").val("");
 
             },
@@ -130,11 +137,14 @@
                             $('#createModal').modal("show");
                             $(".modal-body #id").val(response.id);
                             $(".modal-body #name").val(response.name);
+                            $(".modal-body #tag").val(response.tag);
+                            $(".modal-body #department_id").val(response.department_id);
+                            $(".modal-body #job_id").val(response.job_id);
                             $(".modal-body #phone").val(response.phone);
                             $(".modal-body #salary").val(response.salary);
                             $(".modal-body #workHoursCount").val(response.workHoursCount);
                             $(".modal-body #workDaysCount").val(response.workDaysCount);
-                            $(".modal-body #offWeaklyDaysCount").val(response.offWeaklyDaysCount);
+                            $(".modal-body #offWeaklyDay").val(response.offWeaklyDay);
                             $(".modal-body #address").val(response.address);
 
                         },

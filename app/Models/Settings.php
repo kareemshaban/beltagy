@@ -10,7 +10,8 @@ class Settings extends Model
     use HasFactory;
     protected $fillable = [
        'id' ,
-       'apsents_hours_to_deduct_one_day',
+       'enteringTax',
+       'monthly_cooling_tax_per_box',
        'user_ins',
        'user_upd'
     ];
