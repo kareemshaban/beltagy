@@ -30,6 +30,7 @@ class AttendController extends Controller
             -> whereMonth('attends.date', '=', $month)
             -> whereYear('attends.date', '=',  $year)
             -> get();
+
         $employees = Employee::all();
 
             return view('attend.index', compact('attends' , 'employees'));
@@ -73,39 +74,95 @@ class AttendController extends Controller
         if($request -> id == 0){
 
             if(Carbon::parse($request -> on_duty) <= Carbon::parse($request -> clock_in)){
-                $late = Carbon::parse($request -> clock_in) -> diffInMinutes(Carbon::parse($request -> on_duty));
+
+                $time1 = Carbon::parse($request -> clock_in);
+                $time2 = Carbon::parse($request -> on_duty);
+
+                $diffInMinutes = $time1->diffInMinutes($time2);
+
+                $hours = floor($diffInMinutes / 60);
+                $minutes = $diffInMinutes % 60;
+
+                if($hours < 10) $hours = '0'.$hours;
+                if($minutes < 10) $minutes = '0'.$minutes;
+
+                $late =  $hours . ':' . $minutes ;
+
 
             } else {
-                $late = 0 ;
+                $late = "00:00" ;
             }
 
+
+
             if(Carbon::parse($request -> clock_out) <= Carbon::parse($request -> off_duty)){
-                $early = Carbon::parse($request -> clock_out) -> diffInMinutes(Carbon::parse($request -> off_duty));
+
+                $time1 = Carbon::parse($request -> clock_out);
+                $time2 = Carbon::parse($request -> off_duty);
+
+                $diffInMinutes = $time1->diffInMinutes($time2);
+
+                $hours = floor($diffInMinutes / 60);
+                $minutes = $diffInMinutes % 60;
+
+                if($hours < 10) $hours = '0'.$hours;
+                if($minutes < 10) $minutes = '0'.$minutes;
+
+                $early =  $hours . ':' . $minutes ;
+
+
 
             } else {
-                $early = 0 ;
+                $early = "00:00" ;
             }
 
             if(Carbon::parse($request -> off_duty) < Carbon::parse($request -> clock_out)){
-                $workAdded = Carbon::parse($request -> clock_out) -> diffInMinutes(Carbon::parse($request -> off_duty));
+
+
+                $time1 = Carbon::parse($request -> clock_out);
+                $time2 = Carbon::parse($request -> off_duty);
+
+                $diffInMinutes = $time1->diffInMinutes($time2);
+
+                $hours = floor($diffInMinutes / 60);
+                $minutes = $diffInMinutes % 60;
+
+                if($hours < 10) $hours = '0'.$hours;
+                if($minutes < 10) $minutes = '0'.$minutes;
+
+                $workAdded =  $hours . ':' . $minutes ;
 
             } else {
-                $workAdded = 0 ;
+                $workAdded = "00:00" ;
             }
 
-              $workTime = Carbon::parse($request -> clock_out) -> diffInMinutes(Carbon::parse($request -> clock_in));
+            $time1 = Carbon::parse($request -> clock_out);
+            $time2 = Carbon::parse($request -> clock_in);
+            $diffInMinutes = $time1->diffInMinutes($time2);
 
-             $settings = HrSettings::all() -> first();
-             if($settings ){
-                 if($late >  $settings -> allowLate){
-                     $penalty = $settings -> allowLate + (($late - $settings -> allowLate) * 2 ) ;
-                 } else {
-                     $penalty = $late;
-                 }
+            $hours = floor($diffInMinutes / 60);
+            $minutes = $diffInMinutes % 60;
 
-             }else {
-                 $penalty = 0 ;
-             }
+            if($hours < 10) $hours = '0'.$hours;
+            if($minutes < 10) $minutes = '0'.$minutes;
+
+            $workTime =  $hours . ':' . $minutes ;
+
+
+            $penalty = $late;
+
+//             $settings = HrSettings::all() -> first();
+//             if($settings ){
+//                 if($late >  $settings -> allowLate){
+//                     $penalty = $settings -> allowLate + (($late - $settings -> allowLate) * 2 ) ;
+//
+//                 } else {
+//                     $penalty = $late;
+//                 }
+//
+//             }else {
+//                 $penalty = "00:00" ;
+//             }
 
             Attend::create([
                 'user_id' => $request -> user_id,
@@ -167,39 +224,82 @@ class AttendController extends Controller
         if($attend){
 
             if(Carbon::parse($request -> on_duty) <= Carbon::parse($request -> clock_in)){
-                $late = Carbon::parse($request -> clock_in) -> diffInMinutes(Carbon::parse($request -> on_duty));
+
+                $time1 = Carbon::parse($request -> clock_in);
+                $time2 = Carbon::parse($request -> on_duty);
+
+                $diffInMinutes = $time1->diffInMinutes($time2);
+
+                $hours = floor($diffInMinutes / 60);
+                $minutes = $diffInMinutes % 60;
+
+                if($hours < 10) $hours = '0'.$hours;
+                if($minutes < 10) $minutes = '0'.$minutes;
+
+                $late =  $hours . ':' . $minutes ;
+
 
             } else {
-                $late = 0 ;
+                $late = "00:00" ;
             }
 
+
+
             if(Carbon::parse($request -> clock_out) <= Carbon::parse($request -> off_duty)){
-                $early = Carbon::parse($request -> clock_out) -> diffInMinutes(Carbon::parse($request -> off_duty));
+
+                $time1 = Carbon::parse($request -> clock_out);
+                $time2 = Carbon::parse($request -> off_duty);
+
+                $diffInMinutes = $time1->diffInMinutes($time2);
+
+                $hours = floor($diffInMinutes / 60);
+                $minutes = $diffInMinutes % 60;
+
+                if($hours < 10) $hours = '0'.$hours;
+                if($minutes < 10) $minutes = '0'.$minutes;
+
+                $early =  $hours . ':' . $minutes ;
+
+
 
             } else {
-                $early = 0 ;
+                $early = "00:00" ;
             }
 
             if(Carbon::parse($request -> off_duty) < Carbon::parse($request -> clock_out)){
-                $workAdded = Carbon::parse($request -> clock_out) -> diffInMinutes(Carbon::parse($request -> off_duty));
+
+
+                $time1 = Carbon::parse($request -> clock_out);
+                $time2 = Carbon::parse($request -> off_duty);
+
+                $diffInMinutes = $time1->diffInMinutes($time2);
+
+                $hours = floor($diffInMinutes / 60);
+                $minutes = $diffInMinutes % 60;
+
+                if($hours < 10) $hours = '0'.$hours;
+                if($minutes < 10) $minutes = '0'.$minutes;
+
+                $workAdded =  $hours . ':' . $minutes ;
 
             } else {
-                $workAdded = 0 ;
+                $workAdded = "00:00" ;
             }
 
-            $workTime = Carbon::parse($request -> clock_out) -> diffInMinutes(Carbon::parse($request -> clock_in));
+            $time1 = Carbon::parse($request -> clock_out);
+            $time2 = Carbon::parse($request -> clock_in);
+            $diffInMinutes = $time1->diffInMinutes($time2);
 
-            $settings = HrSettings::all() -> first();
-            if($settings ){
-                if($late >  $settings -> allowLate){
-                    $penalty = $settings -> allowLate + (($late - $settings -> allowLate) * 2 ) ;
-                } else {
-                    $penalty = $late;
-                }
+            $hours = floor($diffInMinutes / 60);
+            $minutes = $diffInMinutes % 60;
 
-            }else {
-                $penalty = 0 ;
-            }
+            if($hours < 10) $hours = '0'.$hours;
+            if($minutes < 10) $minutes = '0'.$minutes;
+
+            $workTime =  $hours . ':' . $minutes ;
+
+
+            $penalty = $late;
 
 
 

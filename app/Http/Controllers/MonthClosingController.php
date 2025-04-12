@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Employee;
 use App\Models\MonthClosing;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\DB;
 
 class MonthClosingController extends Controller
 {
@@ -20,7 +23,32 @@ class MonthClosingController extends Controller
     }
     public function index()
     {
-       return view('month-close.index');
+        $employees = Employee::all();
+
+        $month = Carbon::now()->month;
+        $year = Carbon::now()->year;
+        $isSalary = 0 ;
+
+        $salaries = DB::table('month_closings')
+            -> join('employees' , 'employees.id' , '=' , 'month_closings.user_id')
+            -> select('month_closings.*' , 'employees.name as employee_name' )
+            -> whereMonth('month_closings.date', '=', $month)
+            -> whereYear('month_closings.date', '=',  $year)
+            -> get();
+        if(count($salaries) > 0){
+            $isSalary = 1 ;
+        } else {
+            $isSalary = 0 ;
+        }
+
+        $attends = DB::table('attends')
+            -> join('employees' , 'employees.id' , '=' , 'attends.user_id')
+            -> select('attends.*' , 'employees.name as employee_name' , 'employees.tag as tag' )
+            -> whereMonth('attends.date', '=', $month)
+            -> whereYear('attends.date', '=',  $year)
+            -> get();
+
+       return view('month-close.index' , compact('employees' , 'isSalary' , 'attends' , 'salaries'));
     }
 
     /**

@@ -77,6 +77,7 @@
                             </div>
 
                         </div>
+                        @include('flash-message')
                         <div class="card-body">
                             <div class="table-wrapper">
                                 <div class="table-responsive">

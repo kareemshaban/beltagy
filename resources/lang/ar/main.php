@@ -235,7 +235,8 @@ return [
     'month10' => 'أكتوبر',
     'month11' => 'نوفمبر',
     'month12' => 'ديسمبر',
-    'present' => 'حضور'
+    'present' => 'حضور',
+    'approve_salary' => 'إعتماد الرواتب'
 
 
 

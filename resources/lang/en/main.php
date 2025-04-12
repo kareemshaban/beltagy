@@ -230,5 +230,6 @@ return [
     'month10' => 'October',
     'month11' => 'November',
     'month12' => 'December',
-    'present' => 'Present'
+    'present' => 'Present',
+    'approve_salary' => 'Approve Salaries'
 ];
