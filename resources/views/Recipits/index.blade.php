@@ -88,7 +88,7 @@
         let href = $(this).attr('data-attr');
         $.ajax({
             type:'get',
-            url:'/doc-get',
+            url:'doc-get',
             dataType: 'json',
             success:function(docNumber){
                 $.ajax({
@@ -133,7 +133,7 @@
         let href = $(this).attr('data-attr');
         $.ajax({
             type:'get',
-            url:'/doc-view' + '/' + id,
+            url:'doc-view' + '/' + id,
             dataType: 'json',
             success:function(response){
                 console.log(response);
@@ -227,7 +227,7 @@
     function getClient(id){
         $.ajax({
             type: 'get',
-            url: '/client_account_get' + '/' + id,
+            url: 'client_account_get' + '/' + id,
             dataType: 'json',
             success: function (total) {
                 console.log(total);

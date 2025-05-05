@@ -146,7 +146,7 @@ class CatchRecipitController extends Controller
                 ]);
             }
             $recipit -> delete();
-            return redirect()->route('recipits')->with('success', __('main.deleted'));
+            return redirect()->route('cathes')->with('success', __('main.deleted'));
 
         }
     }

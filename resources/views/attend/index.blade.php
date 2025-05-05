@@ -222,7 +222,7 @@
         let href = $(this).attr('data-attr');
         $.ajax({
             type:'get',
-            url:'/attend-get' + '/' + id,
+            url:'attend-get' + '/' + id,
             dataType: 'json',
 
             success:function(response){
@@ -356,7 +356,7 @@
     function  getAttend(month , year , user_id){
         $.ajax({
             type:'get',
-            url:'/getAttendAjax' + '/' + month + '/' + year + '/' + user_id,
+            url:'getAttendAjax' + '/' + month + '/' + year + '/' + user_id,
             dataType: 'json',
 
             success:function(attends){

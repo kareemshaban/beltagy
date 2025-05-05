@@ -12,11 +12,18 @@
     <link rel="stylesheet" type="text/css" href="{{asset('assets/jquery-easyui/themes/default/easyui.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/jquery-easyui/themes/icon.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/jquery-easyui/demo/demo.css')}}">
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css" />
+    <!-- JS -->
+    <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
 
 </head>
 
 <style>
+    .choices {
+        margin-bottom: 0 !important;
+    }
     @font-face {
         font-family: 'icomoon';
         src: url("{{asset('assets/fonts/ArbFONTS-The-Sans-Plain.otf')}}");

@@ -147,7 +147,7 @@
         let href = $(this).attr('data-attr');
         $.ajax({
             type:'get',
-            url:'/meals_exit-get' + '/' + id,
+            url:'meals_exit-get' + '/' + id,
             dataType: 'json',
 
             success:function(response){
@@ -265,7 +265,7 @@
             var id = e.target.value;
             $.ajax({
                 type:'get',
-                url:'/item_meals_exit' + '/' + id,
+                url:'item_meals_exit' + '/' + id,
                 dataType: 'json',
                 success:function(response){
                         console.log(response);
@@ -298,7 +298,7 @@
                     });
                     $.ajax({
                         type:'get',
-                        url:'/get_exit_meal_count' + '/' + id,
+                        url:'get_exit_meal_count' + '/' + id,
                         dataType: 'json',
                         success:function(response){
                             var prefix = "" ;
@@ -306,7 +306,7 @@
                             if(response.length  > 0){
                                 $.ajax({
                                     type:'get',
-                                    url:'/get_exit_meal_item' + '/' + id,
+                                    url:'get_exit_meal_item' + '/' + id,
                                     dataType: 'json',
                                     success:function(response2){
                                         if(response2){
@@ -327,7 +327,7 @@
                             } else {
                                 $.ajax({
                                     type:'get',
-                                    url:'/get_exit_meal_item' + '/' + id,
+                                    url:'get_exit_meal_item' + '/' + id,
                                     dataType: 'json',
                                     success:function(response){
                                         console.log(response);
@@ -404,7 +404,7 @@
 
             $.ajax({
                 type:'get',
-                url:'/client-get/'+$(".modal-body #client_id").val() ,
+                url:'client-get/'+$(".modal-body #client_id").val() ,
                 dataType: 'json',
                 success:function(client){
                     console.log(client);
@@ -412,7 +412,7 @@
                     if(client.pricingType == 0){
                         $.ajax({
                             type:'get',
-                            url:'/settings_get',
+                            url:'settings_get',
                             dataType: 'json',
                             success:function(response){
 
@@ -448,7 +448,7 @@
                 error: function (err) {
                     $.ajax({
                         type:'get',
-                        url:'/settings_get',
+                        url:'settings_get',
                         dataType: 'json',
                         success:function(response){
 
@@ -474,7 +474,7 @@
         } else {
             $.ajax({
                 type:'get',
-                url:'/settings_get',
+                url:'settings_get',
                 dataType: 'json',
                 success:function(response){
 

@@ -107,7 +107,7 @@
         let href = $(this).attr('data-attr');
         $.ajax({
             type:'get',
-            url:'/department-get' + '/' + id,
+            url:'department-get' + '/' + id,
             dataType: 'json',
 
             success:function(response){

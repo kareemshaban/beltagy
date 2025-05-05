@@ -39,8 +39,8 @@
                                     <th class="text-center"> {{ __('main.id') }} </th>
                                     <th class="text-center"> {{ __('main.name') }} </th>
                                     <th class="text-center"> {{ __('main.phone') }} </th>
-                                    <th class="text-center"> {{ __('main.pricingType') }} </th>
-                                    <th class="text-center"> {{ __('main.balance') }} </th>
+                                    <th class="text-center"> {{ __('main.openningBalance') }} </th>
+                                    <th class="text-center"> {{ __('main.balance_current') }} </th>
                                     <th class="text-center"> {{ __('main.actions') }} </th>
                                     </thead>
                                     <tbody>
@@ -49,9 +49,9 @@
                                             <td class="text-center"> {{ $loop -> index + 1 }} </td>
                                             <td class="text-center"> {{ $client -> name }} </td>
                                             <td class="text-center"> {{ $client -> phone }} </td>
-                                            <td class="text-center @if($client -> pricingType == 0 ) text-success @else text-danger @endif"> {{ $client -> pricingType == 0 ?
-                                                __('main.systemPrice')  : __('main.privatePrice') }}  </td>
-                                            <td style="font-size: 15px ; font-weight: bold ;" class="text-center @if(($client -> debit + $client -> beforeBalanceDebit) - ($client -> credit + $client -> beforeBalanceCredit) > 0) text-success @else text-danger @endif" > {{ number_format(($client -> debit + $client -> beforeBalanceDebit) - ($client -> credit + $client -> beforeBalanceCredit) , 2 )}} </td>
+                                            <td style="font-size: 15px ; font-weight: bold ;" class="text-center @if(( $client -> beforeBalanceDebit) - ( $client -> beforeBalanceCredit) > 0) text-success @else text-danger @endif" > {{ number_format(( $client -> beforeBalanceDebit) - ( $client -> beforeBalanceCredit) , 2 )}} </td>
+
+                                            <td style="font-size: 15px ; font-weight: bold ;" class="text-center @if(($client -> debit + $client -> beforeBalanceCredit) - ($client -> credit + $client -> beforeBalanceDebit) < 0) text-success @else text-danger @endif" > {{ number_format(($client -> debit + $client -> beforeBalanceCredit) - ($client -> credit + $client -> beforeBalanceDebit) , 2 )}} </td>
                                             <td class="text-center">
 
                                                 <button type="button" style="border-radius: 15px; height: 40px ; width: 60px ;" class="btn btn-danger deleteBtn" value="{{ $client -> id }}"> <iconify-icon icon="mynaui:trash-solid" style="font-size: 25px"></iconify-icon> </button>
@@ -134,7 +134,7 @@
         let href = $(this).attr('data-attr');
         $.ajax({
             type:'get',
-            url:'/client-get' + '/' + id,
+            url:'client-get' + '/' + id,
             dataType: 'json',
 
             success:function(response){

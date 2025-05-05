@@ -229,7 +229,16 @@ Route::group(
         Route::get('/safe-destroy/{id}', [App\Http\Controllers\SafeController::class, 'destroy'])->name('safe-destroy');
 
 
+        Route::get('/fix_client_Account', [App\Http\Controllers\ClientAccountController::class, 'fix_client_Account'])->name('fix_client_Account');
 
+
+
+
+        Route::get('/balance', [App\Http\Controllers\WeightStatmentController::class, 'index'])->name('balance');
+        Route::post('/balance-store', [App\Http\Controllers\WeightStatmentController::class, 'store'])->name('balance-store');
+        Route::get('/balance-get/{id}', [App\Http\Controllers\WeightStatmentController::class, 'show'])->name('balance-get');
+        Route::get('/balance-destroy/{id}', [App\Http\Controllers\WeightStatmentController::class, 'destroy'])->name('balance-destroy');
+        Route::get('/balance-create', [App\Http\Controllers\WeightStatmentController::class, 'create'])->name('balance-create');
 
 
         Auth::routes();

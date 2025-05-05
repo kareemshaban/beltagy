@@ -31,7 +31,7 @@ class AttendImport implements ToModel , WithStartRow , WithHeadingRow
                 'clock_out' => $row['clock_out'],
                 'late' => $row['late'],
                 'early' => $row['early'],
-                'absent' => $row['absent'] ?? "FALSE",
+                'absent' => strtolower($row['absent']),
                 'workTimeAdd' => $row['ot_time'],
                 'workTime' => $row['work_time'],
                 'workTimeLate' => $row['late'],
@@ -43,6 +43,6 @@ class AttendImport implements ToModel , WithStartRow , WithHeadingRow
     }
     public function startRow(): int
     {
-        return 5;
+        return 2;
     }
 }

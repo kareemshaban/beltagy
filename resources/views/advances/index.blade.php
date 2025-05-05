@@ -164,7 +164,7 @@
         let href = $(this).attr('data-attr');
         $.ajax({
             type:'get',
-            url:'/advances-get' + '/' + id,
+            url:'advances-get' + '/' + id,
             dataType: 'json',
 
             success:function(response){

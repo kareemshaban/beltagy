@@ -34,7 +34,7 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     <label>{{ __('main.meal') }}  </label>
-                                    <select class="form-select @error('salting_enter_id') is-invalid @enderror" name="salting_enter_id" id="salting_enter_id" required>
+                                    <select class="form-select search @error('salting_enter_id') is-invalid @enderror" name="salting_enter_id" id="salting_enter_id" required>
                                         <option value=""> أختر الرسالة </option>
                                         @foreach($enters as $enter)
                                             <option value="{{$enter -> id}}"> {{$enter -> code}}</option>
@@ -74,8 +74,8 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     <label>{{ __('main.enteringDate') }} </label>
-                                    <input type="date" name="enteringDate" id="enteringDate"
-                                           class="form-control @error('enteringDate') is-invalid @enderror"
+                                    <input type="text" name="enteringDate" id="enteringDate"
+                                           class="form-control  date @error('enteringDate') is-invalid @enderror"
                                            placeholder="" autofocus readonly/>
                                     @error('enteringDate')
                                     <span class="invalid-feedback" role="alert">

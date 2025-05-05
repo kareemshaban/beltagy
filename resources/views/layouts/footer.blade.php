@@ -71,3 +71,21 @@
     });
 
   </script>
+
+
+<script>
+if($('.date').length){
+    flatpickr(".date", {
+        dateFormat: "d-m-Y", // dd-mm-yyyy
+    });
+}
+if($('.search').length){
+
+
+  new Choices('.search', {
+        searchEnabled: true
+    });
+}
+    
+   
+</script>

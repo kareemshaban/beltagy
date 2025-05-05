@@ -179,7 +179,7 @@
     function  addPayment(id , type){
         $.ajax({
             type:'get',
-            url:'/operation_get' + '/' + id + '/' + type,
+            url:'operation_get' + '/' + id + '/' + type,
             dataType: 'json',
 
             success:function(response){

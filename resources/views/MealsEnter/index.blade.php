@@ -150,7 +150,7 @@
         let href = $(this).attr('data-attr');
         $.ajax({
             type:'get',
-            url:'/meals_enter-get' + '/' + id,
+            url:'meals_enter-get' + '/' + id,
             dataType: 'json',
 
             success:function(response){
@@ -265,7 +265,7 @@
       if($(".modal-body #id").val() == 0) {
           $.ajax({
               type: 'get',
-              url: '/item_meals' + '/' + id,
+              url: 'item_meals' + '/' + id,
               dataType: 'json',
               success: function (response) {
                   if (response) {
@@ -279,7 +279,7 @@
                       } else {
                           $.ajax({
                               type: 'get',
-                              url: '/item-get' + '/' + id,
+                              url: 'item-get' + '/' + id,
                               dataType: 'json',
                               success: function (response) {
                                   if (response) {
@@ -325,7 +325,7 @@
 
           $.ajax({
               type:'get',
-              url:'/client-get/'+$(".modal-body #client_id").val() ,
+              url:'client-get/'+$(".modal-body #client_id").val() ,
               dataType: 'json',
               success:function(client){
                   console.log(client);
@@ -333,7 +333,7 @@
                   if(client.pricingType == 0){
                       $.ajax({
                           type:'get',
-                          url:'/settings_get',
+                          url:'settings_get',
                           dataType: 'json',
                           success:function(response){
                               console.log(response);
@@ -359,7 +359,7 @@
               error: function (err) {
                   $.ajax({
                       type:'get',
-                      url:'/settings_get',
+                      url:'settings_get',
                       dataType: 'json',
                       success:function(response){
                           console.log(response);
@@ -381,7 +381,7 @@
       } else {
           $.ajax({
               type:'get',
-              url:'/settings_get',
+              url:'settings_get',
               dataType: 'json',
               success:function(response){
                   console.log(response);

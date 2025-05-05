@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BoxRecipit;
+use App\Models\CatchRecipit;
+use App\Models\Recipit;
 use App\Models\Safe;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -17,6 +20,17 @@ class SafeController extends Controller
     public function index()
     {
         $safes = Safe::all();
+
+        foreach ($safes as $safe) {
+            $x1 = Recipit::where('safe_id', $safe->id)->sum('amount');
+            $x2 = CatchRecipit::where('safe_id', $safe->id)->sum('amount');
+            $x3 = BoxRecipit::where('safe_id', $safe->id)->sum('amount');
+            $safe -> balance = $x2 - ($x1 + $x3);
+        }
+
+
+
+
         return view('Safes.index' , compact('safes'));
 
     }

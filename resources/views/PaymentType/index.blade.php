@@ -108,7 +108,7 @@
         let href = $(this).attr('data-attr');
         $.ajax({
             type:'get',
-            url:'/paymentTypes-get' + '/' + id,
+            url:'paymentTypes-get' + '/' + id,
             dataType: 'json',
 
             success:function(response){

@@ -87,7 +87,7 @@
         let href = $(this).attr('data-attr');
         $.ajax({
             type:'get',
-            url:'/BoxDoc-get',
+            url:'BoxDoc-get',
             dataType: 'json',
             success:function(docNumber){
                 $.ajax({
@@ -133,7 +133,7 @@
         let href = $(this).attr('data-attr');
         $.ajax({
             type:'get',
-            url:'/boxDoc-view' + '/' + id,
+            url:'boxDoc-view' + '/' + id,
             dataType: 'json',
             success:function(response){
                 console.log(response);

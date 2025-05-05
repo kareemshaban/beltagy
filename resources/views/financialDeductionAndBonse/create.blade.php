@@ -38,8 +38,8 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     <label>{{ __('main.date') }}</label>
-                                    <input type="date" name="date" id="date"
-                                        class="form-control @error('date') is-invalid @enderror" autofocus required/>
+                                    <input type="text" name="date" id="date"
+                                        class="form-control date @error('date') is-invalid @enderror" autofocus required/>
                                     @error('date')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

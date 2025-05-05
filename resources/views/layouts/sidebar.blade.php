@@ -10,6 +10,7 @@
                  <option value="salting"> {{__('main.salt_pro')}} </option>
                  <option value="hr"> {{__('main.hr_pro')}} </option>
                  <option value="erp"> {{__('main.erp_pro')}} </option>
+                 <option value="balance"> {{__('main.balance_pro')}} </option>
              </select>
 
             </div>
@@ -324,7 +325,7 @@
 
             </ul>
 
-            <ul id="sidebarnav" style="display: none" class="erp">
+         <ul id="sidebarnav" style="display: none" class="erp">
                 <li class="nav-small-cap">
                     <iconify-icon icon="solar:menu-dots-linear" class="nav-small-cap-icon fs-4"></iconify-icon>
                 </li>
@@ -475,6 +476,55 @@
                         <span class="hide-menu">{{__('main.users')}}</span>
                     </a>
                 </li>
+                <li>
+                    <span class="sidebar-divider lg"></span>
+                </li>
+                <li class="sidebar-item" >
+                    <a class="sidebar-link" href="{{route('fix_client_Account')}}" aria-expanded="false">
+                        <iconify-icon icon="ooui:settings"></iconify-icon>
+                        <span class="hide-menu">{{__('main.fix_accounts')}}</span>
+                    </a>
+                </li>
+                <li>
+                    <span class="sidebar-divider lg"></span>
+                </li>
+
+            </ul>
+
+         <ul id="sidebarnav" style="display: none" class="balance">
+                <li class="nav-small-cap">
+                    <iconify-icon icon="solar:menu-dots-linear" class="nav-small-cap-icon fs-4"></iconify-icon>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="{{route('index')}}" aria-expanded="false">
+                        <iconify-icon icon="solar:widget-add-line-duotone"></iconify-icon>
+                        <span class="hide-menu">{{__('main.main')}}</span>
+                    </a>
+                </li>
+
+                <li class="nav-small-cap">
+                    <iconify-icon icon="solar:menu-dots-linear" class="nav-small-cap-icon fs-4"></iconify-icon>
+
+                </li>
+
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="{{route('clients')}}" aria-expanded="false">
+
+                        <iconify-icon icon="ic:baseline-people"></iconify-icon>
+                        <span class="hide-menu">{{__('main.clients')}}</span>
+                    </a>
+                </li>
+                <li>
+                    <span class="sidebar-divider lg"></span>
+                </li>
+
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="{{ route('balance') }}" aria-expanded="false">
+                        <iconify-icon icon="hugeicons:money-add-01"></iconify-icon>
+                        <span class="hide-menu">{{__('main.weight_statment')}}</span>
+                    </a>
+                </li>
+
                 <li>
                     <span class="sidebar-divider lg"></span>
                 </li>

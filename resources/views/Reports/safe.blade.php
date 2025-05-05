@@ -66,23 +66,23 @@
                                             <td class="text-center"> {{ $doc -> billNumber	 }} </td>
                                             <td class="text-center"> {{ \Carbon\Carbon::parse($doc -> date) ->format('Y-m-d')  }} </td>
                                             <td class="text-center">
-                                                <span @if ($doc -> type == 1 ) class="badge
+                                                <span @if ($doc -> type == 1 || $doc -> type == 3 ) class="badge
                                                     text-bg-danger" @else class="badge text-bg-success" @endif> {{ $doc -> client_name	}}
                                                 </span>
                                             </td>
-                                            <td class="text-center text-success"> {{ $doc -> type > 1 ?  $doc -> amount : 0}} </td>
-                                            <td class="text-center text-danger"> {{ $doc -> type == 1 ? $doc -> amount : 0}} </td>
-                                            <td class="text-center @if($doc -> type > 1 )  text-success @else text-danger @endif"> {{ $doc -> type > 1 ? $doc -> amount : -1 * $doc -> amount}} </td>
+                                            <td class="text-center text-success"> {{ $doc -> type == 2 ?  $doc -> amount : 0}} </td>
+                                            <td class="text-center text-danger"> {{ ($doc -> type == 1 || $doc -> type == 3) ? $doc -> amount : 0}} </td>
+                                            <td class="text-center @if($doc -> type ==  2 )  text-success @else text-danger @endif"> {{ $doc -> type == 2 ? $doc -> amount : -1 * $doc -> amount}} </td>
                                         </tr>
 
-                                      <?php  $total +=  $doc -> type > 1 ? $doc -> amount : -1 * $doc -> amount ?>
+                                      <?php  $total +=  $doc -> type == 2 ? $doc -> amount : -1 * $doc -> amount ?>
 
                                     @endforeach
                                     </tbody>
                                     <tfoot>
                                         <tr>
                                             <td class="text-center" style="font-size: 18px ; font-weight: bold" colspan="3">{{__('main.safeBalance')}}</td>
-                                            <td class="text-center @if($total  > 0 )  text-success @else text-danger @endif" style="font-size: 18px ; font-weight: bold" colspan="4">{{$total}}</td>
+                                            <td class="text-center @if($totalBalance  > 0 )  text-success @else text-danger @endif" style="font-size: 18px ; font-weight: bold" colspan="4">{{$totalBalance}}</td>
                                         </tr>
                                     </tfoot>
                                 </table>

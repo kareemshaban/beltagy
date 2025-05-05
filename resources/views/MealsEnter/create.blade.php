@@ -72,8 +72,8 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     <label>{{ __('main.date') }} </label>
-                                    <input type="date" name="date" id="date"
-                                           class="form-control @error('date') is-invalid @enderror"
+                                    <input type="text" name="date" id="date"
+                                           class="form-control date @error('date') is-invalid @enderror"
                                            autofocus required  placeholder="dd-mm-yyyy" min="1997-01-01" max="2050-12-31"/>
                                     @error('date')
                                     <span class="invalid-feedback" role="alert">

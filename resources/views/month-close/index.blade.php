@@ -79,7 +79,9 @@
                             </div>
                         </div>
                         <div class="card-body">
+
                             <div class="table-wrapper">
+                                <div class="table-responsive">
 
                                 <table class="table table-striped  table-bordered table-hover" id="mtable">
                                     <thead>
@@ -88,13 +90,18 @@
                                         <th class="text-center"> {{ __('main.employe') }} </th>
                                         <th class="text-center"> {{ __('main.attend_days_count') }} </th>
                                         <th class="text-center"> {{ __('main.absence_days_count') }} </th>
-                                        <th class="text-center"> {{ __('main.deductions_days_count') }} </th>
-                                        <th class="text-center"> {{ __('main.bonse_days_count') }} </th>
-                                        <th class="text-center"> {{ __('main.deductions_amount') }} </th>
-                                        <th class="text-center"> {{ __('main.bonse_amount') }} </th>
-                                        <th class="text-center"> {{ __('main.advance_amount') }} </th>
-                                        <th class="text-center"> {{ __('main.net_salary') }} </th>
-                                        <th class="text-center"> {{ __('main.actions') }} </th>
+                                        <th class="text-center"> {{ __('main.requiredHours') }} </th>
+                                        <th class="text-center"> {{ __('main.actualHours') }} </th>
+                                        <th class="text-center"> {{ __('main.lateHours') }} </th>
+                                        <th class="text-center"> {{ __('main.additionalHours') }} </th>
+                                        <th class="text-center"> {{ __('main.rewardHours') }} </th>
+                                        <th class="text-center"> {{ __('main.deductionHours') }} </th>
+                                        <th class="text-center"> {{ __('main.rewardMoney') }} </th>
+                                        <th class="text-center"> {{ __('main.deductionMoney') }} </th>
+                                        <th class="text-center"> {{ __('main.advances') }} </th>
+                                        <th class="text-center"> {{ __('main.netHours') }} </th>
+                                        <th class="text-center"> {{ __('main.salary') }} </th>
+                                        <th class="text-center"> {{ __('main.netSalary') }} </th>
                                     </thead>
                                     @if($isSalary == 0)
                                     <tbody id="attend-body">
@@ -129,6 +136,7 @@
                                         </tbody>
                                     @endif
                                 </table>
+                                </div>
                             </div>
 
 

@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BoxRecipit;
+use App\Models\CatchRecipit;
 use App\Models\Client;
 use App\Models\ClientAccount;
 use App\Models\Item;
 use App\Models\PaymentType;
+use App\Models\Recipit;
 use App\Models\Safe;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -65,10 +68,17 @@ class ReportController extends Controller
         if($request -> payment_type != ''){
             $boxes = $boxes -> where('payment_type' , '=' ,  $request -> payment_type);
         }
+
+
+
         if($request -> safe_id != ''){
             $recipits = $recipits -> where('safe_id' , '=' , $request -> safe_id);
             $catchs = $catchs -> where('safe_id' , '=' , $request -> safe_id);
             $boxes = $boxes -> where('safe_id' , '=' ,  $request -> safe_id);
+            $safes = Safe::where('id' , '=' , $request -> safe_id) -> get() ;
+
+        } else {
+            $safes = Safe::all();
         }
 
         if($request -> has('dateFrom')){
@@ -86,7 +96,20 @@ class ReportController extends Controller
 
 
         $docs = $docs -> orderBy('date', 'ASC') -> get() ;
-        return view('Reports.safe', compact('docs'));
+
+        $doc1 = CatchRecipit::all() -> sum('amount') ;
+        $doc2 = Recipit::all() -> sum('amount') ;
+        $doc3 = BoxRecipit::all() -> sum('amount') ;
+        $total = $doc1 - ( $doc2 + $doc3 );
+
+        $safe_opening = 0 ;
+        foreach ($safes as  $safe) {
+            $safe_opening += $safe -> openingBalance ;
+        }
+
+        $totalBalance = $total + $safe_opening ;
+
+        return view('Reports.safe', compact('docs' , 'totalBalance'));
 
 
     }

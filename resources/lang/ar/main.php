@@ -236,7 +236,29 @@ return [
     'month11' => 'نوفمبر',
     'month12' => 'ديسمبر',
     'present' => 'حضور',
-    'approve_salary' => 'إعتماد الرواتب'
+    'approve_salary' => 'إعتماد الرواتب',
+    'balance_current' => 'الرصيد الحالي',
+    'fix_accounts' => 'مطابقة أرصدة العملاء',
+    'clientAccountsFixed' => 'تم مطابقة أرصدة العملاء',
+     'requiredHours' => 'عدد الساعات المطلوبة',
+    'actualHours' => 'عدد الساعات الفعلية',
+    'lateHours' => 'عدد ساعات التأخير',
+    'additionalHours' => 'عدد ساعات الإضافي',
+    'rewardHours' => 'عدد ساعات المكافئات',
+    'deductionHours' => 'عدد ساعات الخصومات',
+    'rewardMoney' => 'المكافئات المالية',
+    'deductionMoney' => 'الخصومات المالية',
+    'netHours' => 'الساعات المستحقة',
+    'netSalary' => 'الراتب المستحق',
+    'balance_pro' => 'برنامج الميزان',
+    'weight_statment' => 'مستند ميزان',
+    'net_weight' => 'الوزن الصافي',
+    'weights' => 'الأوزان',
+    'total_weights' => 'إجمالي الأوزان',
+    'weight_all' => 'إجمالي الوزن القائم',
+    'burlap_weight' => 'وزن الخيش',
+
+
 
 
 

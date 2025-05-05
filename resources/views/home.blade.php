@@ -19,11 +19,14 @@
       <div class="body-wrapper-inner">
         <div class="container-fluid">
           <!--  Row 1 -->
+            @include('flash-message')
           <div class="row" style="min-height: 70vh">
+
+
 
             <div class="col-lg-12">
                 <div class="row" >
-                    <div class="col-xl-3 col-md-6" onclick="openProgramme('cooling')">
+                    <div class="col-xl-4 col-md-6" onclick="openProgramme('cooling')">
                         <div class="card bg-primary text-white mb-4">
                             <div class="card-body">{{__('main.cool_pro')}}</div>
                             <div class="card-footer d-flex align-items-center justify-content-between">
@@ -32,7 +35,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-3 col-md-6" onclick="openProgramme('salting')">
+                    <div class="col-xl-4 col-md-6" onclick="openProgramme('salting')">
                         <div class="card bg-warning text-white mb-4">
                             <div class="card-body">{{__('main.salt_pro')}}</div>
                             <div class="card-footer d-flex align-items-center justify-content-between">
@@ -41,7 +44,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-3 col-md-6" onclick="openProgramme('hr')">
+                    <div class="col-xl-4 col-md-6" onclick="openProgramme('hr')">
                         <div class="card bg-success text-white mb-4">
                             <div class="card-body">{{__('main.hr_pro')}}</div>
                             <div class="card-footer d-flex align-items-center justify-content-between">
@@ -50,9 +53,18 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-3 col-md-6" onclick="openProgramme('erp')">
+                    <div class="col-xl-4 col-md-6" onclick="openProgramme('erp')">
                         <div class="card bg-danger text-white mb-4" >
                             <div class="card-body">{{__('main.erp_pro')}}</div>
+                            <div class="card-footer d-flex align-items-center justify-content-between">
+                                <span class="small text-white stretched-link" >{{__('main.view_details')}}</span>
+                                <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-6" onclick="openProgramme('balance')">
+                        <div class="card bg-info text-white mb-4" >
+                            <div class="card-body">{{__('main.balance_pro')}}</div>
                             <div class="card-footer d-flex align-items-center justify-content-between">
                                 <span class="small text-white stretched-link" >{{__('main.view_details')}}</span>
                                 <div class="small text-white"><i class="fas fa-angle-right"></i></div>

@@ -120,7 +120,7 @@
         let href = $(this).attr('data-attr');
         $.ajax({
             type:'get',
-            url:'/employee-get' + '/' + id,
+            url:'employee-get' + '/' + id,
             dataType: 'json',
 
             success:function(response){

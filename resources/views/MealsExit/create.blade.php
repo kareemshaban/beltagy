@@ -73,8 +73,8 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     <label>{{ __('main.enteringDate') }} </label>
-                                    <input type="date" name="enteringDate" id="enteringDate" readonly
-                                           class="form-control @error('enteringDate') is-invalid @enderror"
+                                    <input type="text" name="enteringDate" id="enteringDate" readonly
+                                           class="form-control date @error('enteringDate') is-invalid @enderror"
                                            placeholder="" autofocus  required/>
                                 </div>
                             </div>

@@ -5,77 +5,77 @@
 <body>
 
 
-    <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
-        data-sidebar-position="fixed" data-header-position="fixed">
-        <!-- Sidebar Start -->
-        @include('layouts.sidebar')
-        <!--  Sidebar End -->
-        <!--  Main wrapper -->
-        <div class="body-wrapper edit_layout">
-            <!--  Header Start -->
-            @include('layouts.header')
-            <!--  Header End -->
-            <div class="body-wrapper-inner">
-                <div class="container-fluid">
-                    <div class="card">
-                        <div class="card-header"
-                            style="display: flex ; justify-content: space-between ; align-items: center">
-                            <h5 class="card-title fw-semibold " style="margin-bottom: 0 !important; color: #3cacc8 ">{{
+<div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+     data-sidebar-position="fixed" data-header-position="fixed">
+    <!-- Sidebar Start -->
+    @include('layouts.sidebar')
+    <!--  Sidebar End -->
+    <!--  Main wrapper -->
+    <div class="body-wrapper edit_layout">
+        <!--  Header Start -->
+        @include('layouts.header')
+        <!--  Header End -->
+        <div class="body-wrapper-inner">
+            <div class="container-fluid">
+                <div class="card">
+                    <div class="card-header"
+                         style="display: flex ; justify-content: space-between ; align-items: center">
+                        <h5 class="card-title fw-semibold " style="margin-bottom: 0 !important; color: #3cacc8 ">{{
                                 __('main.items') }}</h5>
-                            <button type="button" class="btn btn-info btn-lg" style="display: flex ; align-items: center;" id="createButton">
-                                <span style="margin-left: 5px; margin-right: 5px"> {{ __('main.add_new') }} </span>
-                                <iconify-icon icon="mingcute:plus-fill"></iconify-icon>
-                            </button>
-                        </div>
-                        <div class="card-body">
-                            <div class="col-12">
-                                @include('flash-message')
-
-                            </div>
-                            <div class="table-wrapper">
-                                <div class="table-responsive">
-                                    <table class="table table-striped  table-bordered table-hover" id="table">
-                                        <thead>
-                                        <th class="text-center"> # </th>
-                                        <th class="text-center"> {{ __('main.name') }} </th>
-                                        <th class="text-center"> {{ __('main.id') }} </th>
-                                        <th class="text-center"> {{ __('main.actions') }} </th>
-                                        </thead>
-                                        <tbody>
-                                        @foreach ( $items as $item )
-                                            <tr>
-                                                <td class="text-center"> {{ $loop -> index + 1 }} </td>
-                                                <td class="text-center"> {{ $item -> name }} </td>
-                                                <td class="text-center"> {{ $item -> code }} </td>
-                                                <td class="text-center">
-
-                                                    <button type="button" class="btn btn-danger deleteBtn" value="{{ $item -> id }}"> <iconify-icon icon="mynaui:trash-solid" style="font-size: 25px"></iconify-icon> </button>
-                                                    <button type="button" class="btn btn-success editBtn" value="{{ $item -> id }}"> <iconify-icon icon="akar-icons:edit" style="font-size: 25px"></iconify-icon> </button>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
-
-
-                            </div>
-
-
-                        </div>
+                        <button type="button" class="btn btn-info btn-lg" style="display: flex ; align-items: center;" id="createButton">
+                            <span style="margin-left: 5px; margin-right: 5px"> {{ __('main.add_new') }} </span>
+                            <iconify-icon icon="mingcute:plus-fill"></iconify-icon>
+                        </button>
                     </div>
+                    <div class="card-body">
+                        <div class="col-12">
+                            @include('flash-message')
 
-                    @include('Item.create')
-                    @include('Item.deleteModal')
+                        </div>
+                        <div class="table-wrapper">
+                            <div class="table-responsive">
+                                <table class="table table-striped  table-bordered table-hover" id="table">
+                                    <thead>
+                                    <th class="text-center"> # </th>
+                                    <th class="text-center"> {{ __('main.name') }} </th>
+                                    <th class="text-center"> {{ __('main.id') }} </th>
+                                    <th class="text-center"> {{ __('main.actions') }} </th>
+                                    </thead>
+                                    <tbody>
+                                    @foreach ( $items as $item )
+                                        <tr>
+                                            <td class="text-center"> {{ $loop-> index + 1 }} </td>
+                                            <td class="text-center"> {{ $item -> name }} </td>
+                                            <td class="text-center"> {{ $item -> code }} </td>
+                                            <td class="text-center">
 
-                    @include('layouts.footer')
+                                                <button type="button" class="btn btn-danger deleteBtn" value="{{ $item -> id }}"> <iconify-icon icon="mynaui:trash-solid" style="font-size: 25px"></iconify-icon> </button>
+                                                <button type="button" class="btn btn-success editBtn" value="{{ $item -> id }}"> <iconify-icon icon="akar-icons:edit" style="font-size: 25px"></iconify-icon> </button>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
                 </div>
+
+                @include('Item.create')
+                @include('Item.deleteModal')
+
+                @include('layouts.footer')
             </div>
         </div>
     </div>
+</div>
 
-    <script >
-        $(document).on('click', '#createButton', function (event) {
+<script >
+    $(document).on('click', '#createButton', function (event) {
         console.log('clicked');
         id = 0;
         event.preventDefault();
@@ -107,12 +107,12 @@
     });
 
     $(document).on('click', '.editBtn', function(event) {
-       let id = event.currentTarget.value ;
+        let id = event.currentTarget.value ;
         event.preventDefault();
         let href = $(this).attr('data-attr');
         $.ajax({
             type:'get',
-            url:'/item-get' + '/' + id,
+            url:'item-get' + '/' + id,
             dataType: 'json',
 
             success:function(response){
@@ -194,7 +194,7 @@
         document.location.href=url;
     }
 
-    </script>
+</script>
 </body>
 
 </html>

@@ -147,7 +147,7 @@
         let href = $(this).attr('data-attr');
         $.ajax({
             type:'get',
-            url:'/salting_exit-get' + '/' + id,
+            url:'salting_exit-get' + '/' + id,
             dataType: 'json',
 
             success:function(response){
@@ -260,7 +260,7 @@
 
 
     function confirmDelete(){
-        let url = "{{ route('meals_enter-destroy', ':id') }}";
+        let url = "{{ route('salting_exit-destroy', ':id') }}";
         url = url.replace(':id', id);
         document.location.href=url;
     }
@@ -275,7 +275,7 @@
 
         $.ajax({
             type:'get',
-            url:'/salting_exits_enter' + '/' + id,
+            url:'salting_exits_enter' + '/' + id,
             dataType: 'json',
             success:function(response){
                 console.log(response);
@@ -319,7 +319,7 @@
 
                 $.ajax({
                     type:'get',
-                    url:'/get_exit_salting_count' + '/' + id,
+                    url:'get_exit_salting_count' + '/' + id,
                     dataType: 'json',
                     success:function(response){
                         var prefix = "" ;
@@ -327,7 +327,7 @@
                         if(response.length  > 0){
                             $.ajax({
                                 type:'get',
-                                url:'/get_exit_salting_item' + '/' + id,
+                                url:'get_exit_salting_item' + '/' + id,
                                 dataType: 'json',
                                 success:function(response2){
                                     if(response2){
@@ -348,7 +348,7 @@
                         } else {
                             $.ajax({
                                 type:'get',
-                                url:'/get_exit_salting_item' + '/' + id,
+                                url:'get_exit_salting_item' + '/' + id,
                                 dataType: 'json',
                                 success:function(response){
                                     console.log(response);

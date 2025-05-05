@@ -103,7 +103,7 @@
                             </div>
                             <div class="table-wrapper">
                                 <div class="table-responsive">
-                                    <table class="table table table-striped  table-bordered table-hover"  id="table" >
+                                    <table class="table table table-striped  table-bordered table-hover"  id="mtable" >
                                         <thead>
                                         <th class="text-center"> # </th>
                                         <th class="text-center"> {{ __('main.client') }} </th>
@@ -116,6 +116,12 @@
 
                                         </thead>
                                         <tbody id="table_body">
+                                            <?php $total = 0 ; ?>
+                                            <?php $totalIn = 0 ; ?>
+                                            <?php $totalOut = 0 ; ?>
+
+
+
                                         @foreach ( $data as $meal )
                                             <tr >
                                                 <td class="text-center"> {{ $meal -> id }} </td>
@@ -182,9 +188,23 @@
 
                                             </tr>
 
-
+                                                <?php  $total +=  ($meal -> quantity - $meal -> outingQuantity) / 4  ?>
+                                                <?php  $totalIn +=  ($meal -> quantity) / 4  ?>
+                                                <?php  $totalOut +=  ( $meal -> outingQuantity) / 4  ?>
 
                                         @endforeach
+
+                                            <tr>
+                                                <td colspan="8" class="text-center" style="color: #0a53be ; font-size: 20px"> إجمالي الرسائل  </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="1" class="text-center text-secondary" style="font-weight: bold ; font-size: 14px">   إجمالي العدد الوارد  </td>
+                                                <td colspan="1" class="text-center text-primary" style="font-weight: bold; font-size: 16px">  {{$totalIn}}  {{__('main.box')}}</td>
+                                                <td colspan="1" class="text-center text-secondary" style="font-weight: bold ; font-size: 14px">   إجمالي العدد المنصرف  </td>
+                                                <td colspan="1" class="text-center text-primary" style="font-weight: bold ; font-size: 16px">   {{$totalOut}}  {{__('main.box')}}  </td>
+                                                <td colspan="2" class="text-center text-secondary" style="font-weight: bold ; font-size: 14px">   إجمالي العدد المتبقي  </td>
+                                                <td colspan="2" class="text-center text-primary" style="font-weight: bold ; font-size: 16px">  {{$total}}  {{__('main.box')}}</td>
+                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -220,6 +240,8 @@
              var details = "" ;
              var items = data.data ;
              console.log('items' , items);
+             let total = 0 , totalIn = 0, totalOut = 0 ;
+
              document.getElementById('table_body').innerHTML = "" ;
              if(items.length > 0){
                  for(let i = 0 ; i < items.length ; i++){
@@ -232,6 +254,11 @@
                      day = (day < 10 ? "0" : "") + day;
                      var operationDate = year + "-" + month + "-" + day ;
                      var id = 'exits_id' + items[i]['id'] ;
+
+                     total += Number((items[i]['quantity'] - items[i]['outingQuantity'] ) / 4) ;
+                     totalIn += Number((items[i]['quantity'] ) / 4) ;
+                     totalOut += Number((items[i]['outingQuantity'] ) / 4) ;
+
 
 
                      html += '<tr >\
@@ -251,7 +278,7 @@
                              <table class="table table-danger table-striped  table-bordered " >\
                              <thead>\
                              <tr>\
-                             <td colspan="9" class="text-center text-primary">  رسائل الخروج من {{ $meal -> item_name }} -- {{$meal -> item_code}} </td>\
+                             <td colspan="9" class="text-center text-primary">  رسائل الخروج من الرسالة</td>\
                      </tr>\
                          <tr>\
                              <th class="text-center"> # </th>\
@@ -306,6 +333,19 @@
                  </tr>';
                  }
                  console.log(html);
+
+                 html += `  <tr>
+                                                <td colspan="8" class="text-center" style="color: #0a53be ; font-size: 20px"> إجمالي الرسائل  </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="1"  class="text-center text-secondary" style="font-weight: bold ; font-size: 14px">   إجمالي العدد الوارد  </td>
+                                                <td  colspan="1" class="text-center text-primary" style="font-weight: bold; font-size: 16px"> ${totalIn} </td>
+                                                <td colspan="1" class="text-center text-secondary" style="font-weight: bold ; font-size: 14px">   إجمالي العدد المنصرف  </td>
+                                                <td colspan="1" class="text-center text-primary" style="font-weight: bold ; font-size: 16px">   ${totalOut} </td>
+                                                <td colspan="2" class="text-center text-secondary" style="font-weight: bold ; font-size: 14px">   إجمالي العدد المتبقي  </td>
+                                                <td colspan="2" class="text-center text-primary" style="font-weight: bold ; font-size: 16px">  ${total}</td>
+                                            </tr>`;
+
 
                  document.getElementById('table_body').innerHTML = html ;
               //   document.getElementById(id).innerHTML = details ;

@@ -119,7 +119,7 @@
         let href = $(this).attr('data-attr');
         $.ajax({
             type:'get',
-            url:'/deductionAndBonse-get' + '/' + id,
+            url:'deductionAndBonse-get' + '/' + id,
             dataType: 'json',
 
             success:function(response){

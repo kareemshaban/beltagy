@@ -34,8 +34,8 @@
                                             <label>{{ __('main.dateFrom') }} </label>
                                             <div style="display: flex ; gap: 10px">
                                                 <input type="checkbox" id="isDateFrom" name="isDateFrom" class="form-check"  >
-                                                <input type="date" name="dateFrom" id="dateFrom"
-                                                       class="form-control @error('dateFrom') is-invalid @enderror"
+                                                <input type="text" name="dateFrom" id="dateFrom"
+                                                       class="form-control date @error('dateFrom') is-invalid @enderror"
                                                        placeholder="" autofocus required disabled/>
                                             </div>
 
@@ -52,8 +52,8 @@
                                             <label>{{ __('main.dateTo') }} </label>
                                             <div style="display: flex ; gap: 10px">
                                                 <input type="checkbox" id="isDateTo" name="isDateTo" class="form-check"  >
-                                                <input type="date" name="dateTo" id="dateTo"
-                                                       class="form-control @error('dateTo') is-invalid @enderror"
+                                                <input type="text" name="dateTo" id="dateTo"
+                                                       class="form-control date @error('dateTo') is-invalid @enderror"
                                                        placeholder="" autofocus required disabled/>
                                             </div>
 

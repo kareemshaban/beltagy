@@ -34,7 +34,9 @@ class SaltingEnterController extends Controller
             -> join('items' , 'salting_enters.item_id' , '=' , 'items.id')
             -> join('clients' , 'salting_enters.client_id' , '=' , 'clients.id')
             -> select('salting_enters.*' , 'items.name as item_name' , 'items.code as item_code' ,
-                'clients.name as client')->get();
+                'clients.name as client')
+            ->orderBy('salting_enters.date', 'asc') // You can use 'desc' for descending order
+            ->get();
         $items = Item::all();
         $clients = Client::all();
         return view('SaltingEnter.index', compact('meals' , 'items' , 'clients'));
@@ -78,7 +80,7 @@ class SaltingEnterController extends Controller
                 'user_ins' => Auth::user() -> id ,
                 'user_upd' => 0
             ]) -> id;
-            $this -> clientAccount($request);
+            $this -> clientAccount($request , 0);
             return redirect()->route('salting_enter')->with('success' ,  __('main.saved'));
 
         } else {
@@ -86,19 +88,19 @@ class SaltingEnterController extends Controller
         }
     }
 
-    public function clientAccount(Request $request)
+    public function clientAccount(Request $request , $oldAmount)
     {
         $accounts = ClientAccount::where('client_id' , '=' , $request -> client_id) -> get();
         if(count($accounts) > 0){
             $account = $accounts[0];
             $account -> update([
-                'debit' => $account -> debit +  $request -> total
+                'debit' => $account -> debit +  $request -> total - $oldAmount
             ]);
         }  else {
             ClientAccount::create([
                 'client_id' => $request -> client_id,
                 'credit' => 0,
-                'debit' => $request -> total
+                'debit' => $request -> total - $oldAmount
             ]);
         }
     }
@@ -136,9 +138,21 @@ class SaltingEnterController extends Controller
      */
     public function update(Request $request)
     {
+
         $enter = SaltingEnter::find($request -> id);
 
         if($enter){
+            $isPaid = 0 ;
+            $remain = $request->total - $enter -> paid ;
+
+            if($request -> total > $enter -> paid){
+                //not pdaid
+                $isPaid = 0 ;
+            } else {
+                $isPaid = 1 ;
+            }
+
+            $request -> client_id = $enter -> client_id ;
             $enter -> update([
                 'code' => $request -> code,
                 'date' => Carbon::parse($request -> date),
@@ -146,11 +160,13 @@ class SaltingEnterController extends Controller
                 'weight' => $request -> weight,
                 'price' => $request -> price ,
                 'total' => $request -> total,
-                'remain' => $request -> total - $enter -> paid ,
-                'freshValue' => $request -> freshValue ?? $enter -> freshValue ,
+                'remain' => $remain ,
+                'isPaid' => $isPaid ,
                 'notes' => $request -> notes ?? "",
-                'user_upd' => Auth::user() -> id
+                'freshValue' => $request -> freshValue ?? 0,
+                'user_upd' => Auth::user() -> id ,
             ]);
+            $this -> clientAccount($request , $enter -> total);
 
 
             return redirect()->route('salting_enter')->with('success' ,  __('main.updated'));

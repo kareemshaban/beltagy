@@ -47,8 +47,8 @@
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label>{{ __('main.date') }} </label>
-                                        <input type="date" name="date" id="date"
-                                               class="form-control @error('date') is-invalid @enderror"
+                                        <input type="text" name="date" id="date"
+                                               class="form-control date @error('date') is-invalid @enderror"
                                                placeholder="" autofocus required/>
                                         @error('date')
                                         <span class="invalid-feedback" role="alert">
@@ -180,7 +180,7 @@
 
         $.ajax({
             type:'get',
-            url:'/returnSales-get',
+            url:'returnSales-get',
             dataType: 'json',
             success:function(response){
                 console.log(response);
@@ -198,7 +198,7 @@
             invoice = $('#salesBillId').val();
             $.ajax({
                 type:'get',
-                url:'/invoiceItems' + '/' + invoice + '/' + '1',
+                url:'invoiceItems' + '/' + invoice + '/' + '1',
                 dataType: 'json',
                 success:function(response){
 
@@ -275,7 +275,7 @@
     function addItemToTable(id){
         $.ajax({
             type:'get',
-            url:'/item-get' + '/' + id,
+            url:'item-get' + '/' + id,
             dataType: 'json',
             success:function(response){
                 var item = {

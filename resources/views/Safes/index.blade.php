@@ -41,15 +41,17 @@
                                         <th class="text-center"> {{ __('main.code_place') }} </th>
                                         <th class="text-center"> {{ __('main.name') }} </th>
                                         <th class="text-center"> {{ __('main.openningBalance') }} </th>
+                                          <th class="text-center"> {{ __('main.balance') }} </th>
                                         <th class="text-center"> {{ __('main.actions') }} </th>
                                         </thead>
                                         <tbody>
                                         @foreach ( $safes as $safe )
                                             <tr>
-                                                <td class="text-center"> {{ $safe -> id }} </td>
+                                                <td class="text-center"> {{ $loop -> index + 1 }} </td>
                                                 <td class="text-center"> {{ $safe -> code }} </td>
                                                 <td class="text-center"> {{ $safe -> name }} </td>
                                                 <td class="text-center"> {{ $safe -> openingBalance }} </td>
+                                                 <td class="text-center"> {{ $safe -> balance  + $safe -> openingBalance }} </td>
                                                 <td class="text-center">
 
                                                     <button type="button" class="btn btn-danger deleteBtn" value="{{ $safe -> id }}"> <iconify-icon icon="mynaui:trash-solid" style="font-size: 25px"></iconify-icon> </button>
@@ -114,7 +116,7 @@
         let href = $(this).attr('data-attr');
         $.ajax({
             type:'get',
-            url:'/safe-get' + '/' + id,
+            url:'safe-get' + '/' + id,
             dataType: 'json',
 
             success:function(response){

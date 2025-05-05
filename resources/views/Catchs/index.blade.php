@@ -87,7 +87,7 @@
         let href = $(this).attr('data-attr');
         $.ajax({
             type:'get',
-            url:'/catch-get',
+            url:'catch-get',
             dataType: 'json',
             success:function(docNumber){
                 $.ajax({
@@ -133,7 +133,7 @@
         let href = $(this).attr('data-attr');
         $.ajax({
             type:'get',
-            url:'/catch-view' + '/' + id,
+            url:'catch-view' + '/' + id,
             dataType: 'json',
             success:function(response){
                 console.log(response);
@@ -210,7 +210,7 @@
 
 
     function confirmDelete(){
-        let url = "{{ route('recipits-destroy', ':id') }}";
+        let url = "{{ route('cathes-destroy', ':id') }}";
         url = url.replace(':id', id);
         document.location.href=url;
     }

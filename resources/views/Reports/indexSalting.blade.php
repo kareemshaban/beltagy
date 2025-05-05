@@ -116,6 +116,13 @@
 
                                         </thead>
                                         <tbody id="table_body">
+                                            <?php $total = 0 ; ?>
+                                            <?php $totalIn = 0 ; ?>
+                                            <?php $totalOut = 0 ; ?>
+                                            <?php $weight = 0 ; ?>
+
+
+
                                         @foreach ( $data as $meal )
                                             <tr >
                                                 <td class="text-center"> {{ $meal -> id }} </td>
@@ -177,15 +184,30 @@
                                                 </tr>
                                             @endif
                                             <tr>
-                                                <td colspan="3" class="text-center text-dark" style="font-weight: bold">   رصيد الرسالة الباقي  </td>
-                                                <td colspan="3"  class="text-center text-success">  {{($meal -> quantity - $meal -> outingQuantity) / 4}}  {{__('main.box')}} </td>
-                                                <td colspan="2"  class="text-center text-success">  {{($meal -> weight - $meal -> outingWeight)}}  KG </td>
+                                                <td colspan="4" class="text-center text-dark" style="font-weight: bold">   رصيد الرسالة الباقي  </td>
+                                                <td colspan="4"  class="text-center text-success">  {{($meal -> quantity - $meal -> outingQuantity) / 4}}  {{__('main.box')}} </td>
 
                                             </tr>
+                                                <?php  $total +=  ($meal -> quantity - $meal -> outingQuantity) / 4  ?>
+                                                <?php  $totalIn +=  ($meal -> quantity) / 4  ?>
+                                                <?php  $totalOut +=  ( $meal -> outingQuantity) / 4  ?>
+                                                <?php  $weight += ($meal -> weight - $meal -> outingWeight)  ?>
+
 
 
 
                                         @endforeach
+                                            <tr>
+                                                <td colspan="8" class="text-center" style="color: #0a53be ; font-size: 20px"> إجمالي الرسائل  </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="1" class="text-center text-secondary" style="font-weight: bold ; font-size: 14px">   إجمالي العدد الوارد  </td>
+                                                <td colspan="1" class="text-center text-primary" style="font-weight: bold; font-size: 16px">  {{$totalIn}}  {{__('main.box')}}</td>
+                                                <td colspan="1" class="text-center text-secondary" style="font-weight: bold ; font-size: 14px">   إجمالي العدد المنصرف  </td>
+                                                <td colspan="2" class="text-center text-primary" style="font-weight: bold ; font-size: 16px">   {{$totalOut}}  {{__('main.box')}}  </td>
+                                                <td colspan="1" class="text-center text-secondary" style="font-weight: bold ; font-size: 14px">   إجمالي العدد المتبقي  </td>
+                                                <td colspan="2" class="text-center text-primary" style="font-weight: bold ; font-size: 16px">  {{$total}}  {{__('main.box')}}</td>
+                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -220,6 +242,8 @@
              var html = '' ;
              var details = "" ;
              var items = data.data ;
+
+             let total = 0 , totalIn = 0, totalOut = 0 , weight = 0;
              console.log('items' , items);
              document.getElementById('table_body').innerHTML = "" ;
              if(items.length > 0){
@@ -234,6 +258,10 @@
                      var operationDate = year + "-" + month + "-" + day ;
                      var id = 'exits_id' + items[i]['id'] ;
 
+                     total += Number((items[i]['quantity'] - items[i]['outingQuantity'] ) / 4) ;
+                     totalIn += Number((items[i]['quantity'] ) / 4) ;
+                     totalOut += Number((items[i]['outingQuantity'] ) / 4) ;
+                     weight += Number(items[i]['weight'] )  ;
 
                      html += '<tr >\
                      <td class="text-center"> '+ items[i]['id']+' </td>\
@@ -245,6 +273,8 @@
                      <td class="text-center"> ' + items[i]['quantity'] / 4 +  '  </td>\
                      \ <td class="text-center"> ' + items[i]['weight']  +  '  </td>\
                  </tr>' ;
+
+
 
                      if(items[i]['exits'].length > 0){
 
@@ -296,18 +326,32 @@
 
                        }
 
+
+
+
                      } else {
                          html += '<tr style="background: #0a53be">\
                              <td colspan="8" class="text-danger text-center"> لا يوجد رسائل خروج </td>\
                      </tr>';
                      }
                      html += '<tr>\
-                         <td colspan="3" class="text-center text-dark" style="font-weight: bold">   رصيد الرسالة الباقي  </td>\
-                     <td colspan="3"  class="text-center text-success"> ' + (items[i]['quantity']  - items[i]['outingQuantity'] ) / 4 + '  {{__('main.box')}} </td>\
-                     <td colspan="2"  class="text-center text-success"> ' + (items[i]['weight']  - items[i]['outingWeight'] ) + '  KG </td>\
+                         <td colspan="4" class="text-center text-dark" style="font-weight: bold">   رصيد الرسالة الباقي  </td>\
+                     <td colspan="4"  class="text-center text-success"> ' + (items[i]['quantity']  - items[i]['outingQuantity'] ) / 4 + '  {{__('main.box')}} </td>\
                  </tr>';
                  }
-                 console.log(html);
+
+
+                 html += `  <tr>
+                                                <td colspan="8" class="text-center" style="color: #0a53be ; font-size: 20px"> إجمالي الرسائل  </td>
+                                            </tr>
+                                            <tr>
+                                                <td  colspan="1" class="text-center text-secondary" style="font-weight: bold ; font-size: 14px">   إجمالي العدد الوارد  </td>
+                                                <td  colspan="1" class="text-center text-primary" style="font-weight: bold; font-size: 16px"> ${totalIn} </td>
+                                                <td  colspan="1" class="text-center text-secondary" style="font-weight: bold ; font-size: 14px">   إجمالي العدد المنصرف  </td>
+                                                <td colspan="2" class="text-center text-primary" style="font-weight: bold ; font-size: 16px">   ${totalOut} </td>
+                                                <td  colspan="1" class="text-center text-secondary" style="font-weight: bold ; font-size: 14px">   إجمالي العدد المتبقي  </td>
+                                                <td  colspan="2" class="text-center text-primary" style="font-weight: bold ; font-size: 16px">  ${total}</td>
+                                            </tr>`;
 
                  document.getElementById('table_body').innerHTML = html ;
               //   document.getElementById(id).innerHTML = details ;

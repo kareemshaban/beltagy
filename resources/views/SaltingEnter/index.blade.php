@@ -63,10 +63,10 @@
                                                 <td class="text-center"> {{ $meal -> price }} </td>
                                                 <td class="text-center"> {{ $meal -> total}} </td>
                                                 <td class="text-center"> {{ $meal -> freshValue}} </td>
-                                                <td class="text-center" >
+                                                <td class="text-center" style="display: flex ; justify-content: center ;gap: 10px">
 
                                                     <button type="button" style="border-radius: 15px ; height: 40px ; width: 60px" class="btn btn-danger deleteBtn"  value="{{ $meal -> id }}"> <iconify-icon icon="mynaui:trash-solid" style="font-size: 20px"></iconify-icon> </button>
-                                                    <button type="button" class="btn btn-success editBtn" hidden="hidden" value="{{ $meal -> id }}"> <iconify-icon icon="akar-icons:edit" style="font-size: 20px"></iconify-icon> </button>
+                                                    <button type="button" style="border-radius: 15px ; height: 40px ; width: 60px"  class="btn btn-success editBtn"  value="{{ $meal -> id }}"> <iconify-icon icon="akar-icons:edit" style="font-size: 20px"></iconify-icon> </button>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -151,7 +151,7 @@
         let href = $(this).attr('data-attr');
         $.ajax({
             type:'get',
-            url:'/salting_enter-get' + '/' + id,
+            url:'salting_enter-get' + '/' + id,
             dataType: 'json',
 
             success:function(response){
@@ -267,7 +267,7 @@
     function itemChangeAction(id){
         $.ajax({
             type:'get',
-            url:'/item_salting_enters' + '/' + id,
+            url:'item_salting_enters' + '/' + id,
             dataType: 'json',
             success:function(response){
                 console.log((response).length );
@@ -281,7 +281,7 @@
                     } else {
                         $.ajax({
                             type:'get',
-                            url:'/item-get' + '/' + id,
+                            url:'item-get' + '/' + id,
                             dataType: 'json',
                             success:function(response){
                                 if(response){

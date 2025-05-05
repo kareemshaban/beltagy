@@ -151,19 +151,6 @@ class AttendController extends Controller
 
             $penalty = $late;
 
-//             $settings = HrSettings::all() -> first();
-//             if($settings ){
-//                 if($late >  $settings -> allowLate){
-//                     $penalty = $settings -> allowLate + (($late - $settings -> allowLate) * 2 ) ;
-//
-//                 } else {
-//                     $penalty = $late;
-//                 }
-//
-//             }else {
-//                 $penalty = "00:00" ;
-//             }
-
             Attend::create([
                 'user_id' => $request -> user_id,
                 'date' => Carbon::parse($request -> date),
@@ -173,7 +160,7 @@ class AttendController extends Controller
                 'clock_out' => $request -> clock_out,
                 'late' => $late ,
                 'early' => $early,
-                'absent' => 0,
+                'absent' => $request -> absent,
                 'workTimeAdd' => $workAdded,
                 'workTime' => $workTime,
                 'workTimeLate' => $late,
@@ -312,7 +299,7 @@ class AttendController extends Controller
                 'clock_out' => $request -> clock_out,
                 'late' => $late ,
                 'early' => $early,
-                'absent' => 0,
+                'absent' => $request -> absent,
                 'workTimeAdd' => $workAdded,
                 'workTime' => $workTime,
                 'workTimeLate' => $late,
